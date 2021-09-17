@@ -1,0 +1,19 @@
+- There will be a fixed supply of our tokens 1000000000 Spaces only 1000000 for this sale
+- The token sale will last two months
+- When a user buys Spaces they will receive => 1ETH = 50000 Spaces ¿?
+   - Week 1 - they will recieve 50% bonus => rate 1 ether => 100.000 $SPACES 
+   - Week 2 - they will receive 50% bonus => rate 1 ether => 100.000 $SPACES 
+   - Week 3 - They will receive 25% bonus => rate 1 ether => 75.000 $SPACES 
+   - Week 4 - they will receive 25% bonus. => rate 1 ether => 75.000 $SPACES 
+   - Week 5 - Week 8 will receive 0% bonus => rate 1 ether => 50.000 $SPACES
+
+- Wants to be able to set the start & stop date for the token sale
+- If the number of Spaces are sold before the end date, then the token sale should end
+- Contract must have an admin role, pauser rol, which is hard-coded as ETH addresses, will have multisign contract in mainnet
+- 1.000.000 offered $SPACE tokens => 1% of TotalSupply
+- Admin can generate a list of all users and show number of tokens they have
+- Admin can pull everyone's or individual coins, setting their value = 0 incase of an emergency
+- Needs to be diamond schema securitation
+
+We will also need to be able to display the numbers (Sold-OnSale) on our landing page for this Token Sale/DICO. We will design this just need to show: 
+- Tokens sold in real-time - So for example we have 1 million tokens there needs to be some sort of countdown showing how many are left.
