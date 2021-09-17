@@ -24,7 +24,7 @@
 *You’re not a product anymore. We are developing advanced solutions to improve commerce and the economy at large.
  */
 
-pragma solidity >= 0.5.16 < 0.9.0;
+pragma solidity  0.5.16 < 0.9.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
