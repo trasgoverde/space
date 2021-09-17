@@ -16,7 +16,7 @@ module.exports = {
     },
     solc: {
       // default is 0.5.16
-      version: ">=0.5.16 <0.9.0",
+      version: ">=0.4.24 <0.9.0",
       optimizer: {
         enabled: true,
         runs: 200
