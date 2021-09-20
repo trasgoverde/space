@@ -2,6 +2,10 @@
 pragma solidity ^0.5.0;
 
 /**
+<<<<<<< HEAD
+=======
+ * @Autor: Ignacio Souto
+>>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
  * @dev Collection of functions related to the address type
  * @dev Colección de funciones relativas al tipo de dirección
  */
@@ -291,7 +295,11 @@ library SafeERC20 {
     using Address for address;
 
     function safeTransfer(
+<<<<<<< HEAD
         IERC20 token,
+=======
+        IBEP20 token,
+>>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address to,
         uint256 value
     ) internal {
@@ -299,7 +307,11 @@ library SafeERC20 {
     }
 
     function safeTransferFrom(
+<<<<<<< HEAD
         IERC20 token,
+=======
+        IBEP20 token,
+>>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address from,
         address to,
         uint256 value
@@ -315,7 +327,11 @@ library SafeERC20 {
      * {safeDecreaseAllowance} instead.
      */
     function safeApprove(
+<<<<<<< HEAD
         IERC20 token,
+=======
+        ERC20 token,
+>>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address spender,
         uint256 value
     ) internal {
@@ -331,7 +347,11 @@ library SafeERC20 {
     }
 
     function safeIncreaseAllowance(
+<<<<<<< HEAD
         IERC20 token,
+=======
+        ERC20 token,
+>>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address spender,
         uint256 value
     ) internal {
@@ -340,7 +360,11 @@ library SafeERC20 {
     }
 
     function safeDecreaseAllowance(
+<<<<<<< HEAD
         IERC20 token,
+=======
+        ERC20 token,
+>>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address spender,
         uint256 value
     ) internal {
@@ -357,7 +381,11 @@ library SafeERC20 {
      * @param token The token targeted by the call.
      * @param data The call data (encoded using abi.encode or one of its variants).
      */
+<<<<<<< HEAD
     function _callOptionalReturn(IERC20 token, bytes memory data) private {
+=======
+    function _callOptionalReturn(ERC20 token, bytes memory data) private {
+>>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since
         // we're implementing it ourselves. We use {Address.functionCall} to perform this call, which verifies that
         // the target address contains contract code and also asserts for success in the low-level call.
