@@ -1,11 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.5.0;
-
 /**
-<<<<<<< HEAD
-=======
- * @Autor: Ignacio Souto
->>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
  * @dev Collection of functions related to the address type
  * @dev Colección de funciones relativas al tipo de dirección
  */
@@ -295,11 +290,7 @@ library SafeERC20 {
     using Address for address;
 
     function safeTransfer(
-<<<<<<< HEAD
         IERC20 token,
-=======
-        IBEP20 token,
->>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address to,
         uint256 value
     ) internal {
@@ -307,11 +298,7 @@ library SafeERC20 {
     }
 
     function safeTransferFrom(
-<<<<<<< HEAD
         IERC20 token,
-=======
-        IBEP20 token,
->>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address from,
         address to,
         uint256 value
@@ -321,17 +308,13 @@ library SafeERC20 {
 
     /**
      * @dev Deprecated. This function has issues similar to the ones found in
-     * {IBEP20-approve}, and its usage is discouraged.
+     * {IERC20-approve}, and its usage is discouraged.
      *
      * Whenever possible, use {safeIncreaseAllowance} and
      * {safeDecreaseAllowance} instead.
      */
     function safeApprove(
-<<<<<<< HEAD
         IERC20 token,
-=======
-        ERC20 token,
->>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address spender,
         uint256 value
     ) internal {
@@ -347,11 +330,7 @@ library SafeERC20 {
     }
 
     function safeIncreaseAllowance(
-<<<<<<< HEAD
         IERC20 token,
-=======
-        ERC20 token,
->>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address spender,
         uint256 value
     ) internal {
@@ -360,11 +339,7 @@ library SafeERC20 {
     }
 
     function safeDecreaseAllowance(
-<<<<<<< HEAD
         IERC20 token,
-=======
-        ERC20 token,
->>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         address spender,
         uint256 value
     ) internal {
@@ -381,20 +356,16 @@ library SafeERC20 {
      * @param token The token targeted by the call.
      * @param data The call data (encoded using abi.encode or one of its variants).
      */
-<<<<<<< HEAD
     function _callOptionalReturn(IERC20 token, bytes memory data) private {
-=======
-    function _callOptionalReturn(ERC20 token, bytes memory data) private {
->>>>>>> 15ff02caf875582325ed91119f72e05a206f2b62
         // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since
         // we're implementing it ourselves. We use {Address.functionCall} to perform this call, which verifies that
         // the target address contains contract code and also asserts for success in the low-level call.
 
-        bytes memory returndata = address(token).functionCall(data, 'SafeBEP20: low-level call failed');
+        bytes memory returndata = address(token).functionCall(data, 'SafeERC20: low-level call failed');
         if (returndata.length > 0) {
             // Return data is optional
             // solhint-disable-next-line max-line-length
-            require(abi.decode(returndata, (bool)), 'SafeBEP20: BEP20 operation did not succeed');
+            require(abi.decode(returndata, (bool)), 'SafeERC20: ERC20 operation did not succeed');
         }
     }
 }
@@ -682,7 +653,7 @@ contract ReentrancyGuard {
  */
 // solhint-disable-next-line contract-name-camelcase
 contract __unstable__TokenVault is Secondary {
-    function transfer(IBEP20 token, address to, uint256 amount) public onlyPrimary {
+    function transfer(IERC20 token, address to, uint256 amount) public onlyPrimary {
         token.transfer(to, amount);
     }
 }
@@ -941,9 +912,9 @@ contract Pausable is Context, PauserRole {
  */
 contract Crowdsale is Context, ReentrancyGuard {
     using SafeMath for uint256;
-    using SafeERC20 for ERC20;
+    using SafeERC20 for IERC20;
     // The token being sold
-    IBEP20 private _token;
+    IERC20 private _token;
 
     // Address where funds are collected
     address payable private _wallet;
@@ -974,7 +945,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
-    constructor (uint256 rate, address payable wallet, ERC20 token) public {
+    constructor (uint256 rate, address payable wallet, IERC20 token) public {
         require(rate > 0, "Crowdsale: rate is 0");
         require(wallet != address(0), "Crowdsale: wallet is the zero address");
         require(address(token) != address(0), "Crowdsale: token is the zero address");
@@ -997,7 +968,7 @@ contract Crowdsale is Context, ReentrancyGuard {
     /**
      * @return the token being sold.
      */
-    function token() public view returns (IBEP20) {
+    function token() public view returns (IERC20) {
         return _token;
     }
 
@@ -1527,7 +1498,7 @@ contract Ownable is Context {
   }
 }
 
-contract BEP20Token is Context, IBEP20, Ownable 
+contract ERC20Token is Context, IERC20, Ownable 
 {
     using SafeMath for uint256;
     using Address for address;
@@ -1590,21 +1561,21 @@ contract BEP20Token is Context, IBEP20, Ownable
     }
 
     /**
-     * @dev See {BEP20-totalSupply}.
+     * @dev See {ERC20-totalSupply}.
      */
     function totalSupply() public view returns (uint256) {
         return _totalSupply;
     }
 
     /**
-     * @dev See {BEP20-balanceOf}.
+     * @dev See {ERC20-balanceOf}.
      */
     function balanceOf(address account) public view returns (uint256) {
         return _balances[account];
     }
 
     /**
-     * @dev See {BEP20-transfer}.
+     * @dev See {ERC20-transfer}.
      *
      * Requirements:
      *
@@ -1617,14 +1588,14 @@ contract BEP20Token is Context, IBEP20, Ownable
     }
 
     /**
-     * @dev See {BEP20-allowance}.
+     * @dev See {ERC20-allowance}.
      */
     function allowance(address owner, address spender) public view returns (uint256) {
         return _allowances[owner][spender];
     }
 
     /**
-     * @dev See {BEP20-approve}.
+     * @dev See {ERC20-approve}.
      *
      * Requirements:
      *
@@ -1636,10 +1607,10 @@ contract BEP20Token is Context, IBEP20, Ownable
     }
 
     /**
-     * @dev See {BEP20-transferFrom}.
+     * @dev See {ERC20-transferFrom}.
      *
      * Emits an {Approval} event indicating the updated allowance. This is not
-     * required by the EIP. See the note at the beginning of {BEP20};
+     * required by the EIP. See the note at the beginning of {ERC20};
      *
      * Requirements:
      * - `sender` and `recipient` cannot be the zero address.
@@ -1656,7 +1627,7 @@ contract BEP20Token is Context, IBEP20, Ownable
         _approve(
             sender,
             _msgSender(),
-            _allowances[sender][_msgSender()].sub(amount, 'BEP20: transfer amount exceeds allowance')
+            _allowances[sender][_msgSender()].sub(amount, 'ERC20: transfer amount exceeds allowance')
         );
         return true;
     }
@@ -1665,7 +1636,7 @@ contract BEP20Token is Context, IBEP20, Ownable
      * @dev Atomically increases the allowance granted to `spender` by the caller.
      *
      * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {BEP20-approve}.
+     * problems described in {ERC20-approve}.
      *
      * Emits an {Approval} event indicating the updated allowance.
      *
@@ -1682,7 +1653,7 @@ contract BEP20Token is Context, IBEP20, Ownable
      * @dev Atomically decreases the allowance granted to `spender` by the caller.
      *
      * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {BEP20-approve}.
+     * problems described in {ERC20-approve}.
      *
      * Emits an {Approval} event indicating the updated allowance.
      *
@@ -1696,7 +1667,7 @@ contract BEP20Token is Context, IBEP20, Ownable
         _approve(
             _msgSender(),
             spender,
-            _allowances[_msgSender()][spender].sub(subtractedValue, 'BEP20: decreased allowance below zero')
+            _allowances[_msgSender()][spender].sub(subtractedValue, 'ERC20: decreased allowance below zero')
         );
         return true;
     }
@@ -1733,10 +1704,10 @@ contract BEP20Token is Context, IBEP20, Ownable
         address recipient,
         uint256 amount
     ) internal {
-        require(sender != address(0), 'BEP20: transfer from the zero address');
-        require(recipient != address(0), 'BEP20: transfer to the zero address');
+        require(sender != address(0), 'ERC20: transfer from the zero address');
+        require(recipient != address(0), 'ERC20: transfer to the zero address');
 
-        _balances[sender] = _balances[sender].sub(amount, 'BEP20: transfer amount exceeds balance');
+        _balances[sender] = _balances[sender].sub(amount, 'ERC20: transfer amount exceeds balance');
         _balances[recipient] = _balances[recipient].add(amount);
         emit Transfer(sender, recipient, amount);
     }
@@ -1751,7 +1722,7 @@ contract BEP20Token is Context, IBEP20, Ownable
      * - `to` cannot be the zero address.
      */
     function _mint(address account, uint256 amount) internal {
-        require(account != address(0), 'BEP20: mint to the zero address');
+        require(account != address(0), 'ERC20: mint to the zero address');
 
         _totalSupply = _totalSupply.add(amount);
         _balances[account] = _balances[account].add(amount);
@@ -1770,9 +1741,9 @@ contract BEP20Token is Context, IBEP20, Ownable
      * - `account` must have at least `amount` tokens.
      */
     function _burn(address account, uint256 amount) internal {
-        require(account != address(0), 'BEP20: burn from the zero address');
+        require(account != address(0), 'ERC20: burn from the zero address');
 
-        _balances[account] = _balances[account].sub(amount, 'BEP20: burn amount exceeds balance');
+        _balances[account] = _balances[account].sub(amount, 'ERC20: burn amount exceeds balance');
         _totalSupply = _totalSupply.sub(amount);
         emit Transfer(account, address(0), amount);
     }
@@ -1795,8 +1766,8 @@ contract BEP20Token is Context, IBEP20, Ownable
         address spender,
         uint256 amount
     ) internal {
-        require(owner != address(0), 'BEP20: approve from the zero address');
-        require(spender != address(0), 'BEP20: approve to the zero address');
+        require(owner != address(0), 'ERC20: approve from the zero address');
+        require(spender != address(0), 'ERC20: approve to the zero address');
 
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
@@ -1813,7 +1784,7 @@ contract BEP20Token is Context, IBEP20, Ownable
         _approve(
             account,
             _msgSender(),
-            _allowances[account][_msgSender()].sub(amount, 'BEP20: burn amount exceeds allowance')
+            _allowances[account][_msgSender()].sub(amount, 'ERC20: burn amount exceeds allowance')
         );
     }
 }
@@ -1832,7 +1803,7 @@ contract TokenVesting is Ownable {
     // solhint-disable not-rely-on-time
 
     using SafeMath for uint256;
-    using SafeBEP20 for IBEP20;
+    using SafeERC20 for IERC20;
 
     event TokensReleased(address token, uint256 amount);
     event TokenVestingRevoked(address token);
@@ -1928,7 +1899,7 @@ contract TokenVesting is Ownable {
      * @notice Transfers vested tokens to beneficiary.
      * @param token ERC20 token which is being vested
      */
-    function release(IBEP20 token) public {
+    function release(IERC20 token) public {
         uint256 unreleased = _releasableAmount(token);
         require(unreleased > 0, "TokenVesting: no tokens are due");
 
@@ -1944,7 +1915,7 @@ contract TokenVesting is Ownable {
      * remain in the contract, the rest are returned to the owner.
      * @param token ERC20 token which is being vested
      */
-    function revoke(IBEP20 token) public onlyOwner {
+    function revoke(IERC20 token) public onlyOwner {
         require(_revocable, "TokenVesting: cannot revoke");
         require(!_revoked[address(token)], "TokenVesting: token already revoked");
 
@@ -1984,7 +1955,7 @@ contract TokenVesting is Ownable {
      * @dev Calculates the amount that has already vested but hasn't been released yet.
      * @param token ERC20 token which is being vested
      */
-    function _releasableAmount(IBEP20 token) public view returns (uint256) {
+    function _releasableAmount(IERC20 token) public view returns (uint256) {
         return _vestedAmount(token).sub(_released[address(token)]);
     }
 
@@ -1992,7 +1963,7 @@ contract TokenVesting is Ownable {
      * @dev Calculates the amount that has already vested.
      * @param token ERC20 token which is being vested
      */
-    function _vestedAmount(IBEP20 token) private view returns (uint256) {
+    function _vestedAmount(IERC20 token) private view returns (uint256) {
         uint256 currentBalance = token.balanceOf(address(this));
         uint256 totalBalance = currentBalance.add(_released[address(token)]);
 
@@ -2007,13 +1978,13 @@ contract TokenVesting is Ownable {
             }
     }
     
-    function getTotalAmount(IBEP20 token) public view returns (uint256) {
+    function getTotalAmount(IERC20 token) public view returns (uint256) {
         uint256 currentBalance = token.balanceOf(address(this));
         uint256 totalBalance = currentBalance.add(_released[address(token)]);
         return totalBalance;
     }
     
-    function getLeftoverAmount(IBEP20 token) public view returns (uint256) {
+    function getLeftoverAmount(IERC20 token) public view returns (uint256) {
         
         return  token.balanceOf(address(this));
     }
@@ -2045,7 +2016,7 @@ contract TSTokenPrivateSale is
     mapping(address => bool) private _firstWithdraw;
     
     
-    IBEP20 _token; 
+    IERC20 _token; 
         
     uint256 private _individualDefaultCap;
     
@@ -2060,7 +2031,7 @@ contract TSTokenPrivateSale is
     uint256 private _lockedAfterFirstWithdraw;
     
     constructor(
-        IBEP20 tokenAddress, uint256 totalSaleCap, uint256 individualPurchaseCap, uint256 openingTime, uint256 closingTime, 
+        IERC20 tokenAddress, uint256 totalSaleCap, uint256 individualPurchaseCap, uint256 openingTime, uint256 closingTime, 
         address payable walletAddress, uint256 rate, uint256 cliffDuration, uint256 vestDuration, uint256 startCliffAfterFirstWithdrawTime)
         
         public
@@ -2071,7 +2042,7 @@ contract TSTokenPrivateSale is
         Crowdsale(rate, walletAddress, tokenAddress)
     {
         tree[msg.sender] = User(msg.sender, msg.sender);
-        _token = IBEP20(tokenAddress);
+        _token = IERC20(tokenAddress);
         _totalCap = totalSaleCap;
         _individualDefaultCap = individualPurchaseCap;
         _openingTime = openingTime;
