@@ -1991,7 +1991,11 @@ contract TokenVesting is Ownable {
     }
 }
 
+<<<<<<< HEAD
 contract SpaceTokenPrivateSale is
+=======
+contract SpacePrivateSale is
+>>>>>>> bdfa8658654b8e66be209ccfa1f6ecdd298ee002
     Crowdsale,
     CappedCrowdsale,
     CapperRole,
