@@ -1523,8 +1523,8 @@ contract ERC20Token is Context, IERC20, Ownable
      * construction.
      */
     constructor() public {
-    _name = "Test Bep Token";
-    _symbol = "TBEP";
+    _name = "SPACE";
+    _symbol = "SPACE";
     _decimals = 18;
     _totalSupply = 1000000000 * 10 ** uint256(_decimals);
     _balances[msg.sender] = _totalSupply;
