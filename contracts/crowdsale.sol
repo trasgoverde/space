@@ -7,7 +7,7 @@ pragma solidity ^0.5.0;
 library Address {
     /**
      * @dev Returns true if `account` is a contract.
-     *
+     * @dev Retorna true si la cuenta es un contrato
      * [IMPORTANT]
      * ====
      * It is unsafe to assume that an address for which this function returns
@@ -216,7 +216,7 @@ interface IERC20 {
   function name() external view returns (string memory);
 
   /**
-   * @dev Returns the bep token owner.
+   * @dev Returns the ERC20 token owner.
    */
   function getOwner() external view returns (address);
 
@@ -921,8 +921,8 @@ contract Crowdsale is Context, ReentrancyGuard {
 
     // How many token units a buyer gets per wei.
     // The rate is the conversion between wei and the smallest and indivisible token unit.
-    // So, if you are using a rate of 1 with a ERC20Detailed token with 3 decimals called TOK
-    // 1 wei will give you 1 unit, or 0.001 TOK.
+    // So, if you are using a rate of 1 with a ERC20Detailed token with 18 decimals called SPACE
+    // 1 wei will give you 50.000 SPACE.
     uint256 private _rate;
 
     // Amount of wei raised
@@ -941,7 +941,8 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @param rate Number of token units a buyer gets per wei
      * @dev The rate is the conversion between wei and the smallest and indivisible
      * token unit. So, if you are using a rate of 1 with a ERC20Detailed token
-     * with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
+     * with 18 decimals called SPACE
+     * 1 wei will give you 50.000 SPACE.
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
@@ -1523,8 +1524,8 @@ contract ERC20Token is Context, IERC20, Ownable
      * construction.
      */
     constructor() public {
-    _name = "Test Bep Token";
-    _symbol = "TBEP";
+    _name = "SPACE";
+    _symbol = "SPACE";
     _decimals = 18;
     _totalSupply = 1000000000 * 10 ** uint256(_decimals);
     _balances[msg.sender] = _totalSupply;
@@ -1990,7 +1991,7 @@ contract TokenVesting is Ownable {
     }
 }
 
-contract TSTokenPrivateSale is
+contract SpaceTokenPrivateSale is
     Crowdsale,
     CappedCrowdsale,
     CapperRole,
@@ -2287,7 +2288,7 @@ contract TSTokenPrivateSale is
     }
     
     /**
-     * @dev extended function of purchase token, with amount purchased and reffral address
+     * @dev extended function of purchase token, with amount purchased and refferal address
      * @param beneficiary the address in question
      * @param boughtAmount amount purchased without the extra counting of token decimals
      * @param referee refferal address
