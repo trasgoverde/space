@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.5;
 /**
  * @dev Collection of functions related to the address type
  * @dev Colección de funciones relativas al tipo de dirección
@@ -1045,7 +1045,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @param beneficiary Address performing the token purchase
      * @param weiAmount Value in wei involved in the purchase
      */
-    function _postValidatePurchase(address beneficiary, uint256 weiAmount) internal view {
+    function _postValidatePurchase(address beneficiary, uint256 weiAmount) public view {
         // solhint-disable-previous-line no-empty-blocks
     }
 
@@ -1075,7 +1075,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @param beneficiary Address receiving the tokens
      * @param weiAmount Value in wei involved in the purchase
      */
-    function _updatePurchasingState(address beneficiary, uint256 weiAmount) internal {
+    function _updatePurchasingState(address beneficiary, uint256 weiAmount) public {
         // solhint-disable-previous-line no-empty-blocks
     }
 
@@ -1084,7 +1084,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @param weiAmount Value in wei to be converted into tokens
      * @return Number of tokens that can be purchased with the specified _weiAmount
      */
-    function _getTokenAmount(uint256 weiAmount) internal view returns (uint256) {
+    function _getTokenAmount(uint256 weiAmount) public view returns (uint256) {
         return weiAmount.mul(_rate);
     }
 
@@ -1286,7 +1286,7 @@ contract FinalizableCrowdsale is TimedCrowdsale {
      * should call super._finalization() to ensure the chain of finalization is
      * executed entirely.
      */
-    function _finalization() internal {
+    function _finalization() public pure {
         // solhint-disable-previous-line no-empty-blocks
     }
 }
@@ -1378,7 +1378,7 @@ contract IndividuallyCappedCrowdsale is Crowdsale, CapperRole {
      * @param beneficiary Token purchaser
      * @param weiAmount Amount of wei contributed
      */
-    function _updatePurchasingState(address beneficiary, uint256 weiAmount) internal {
+    function _updatePurchasingState(address beneficiary, uint256 weiAmount) public {
         super._updatePurchasingState(beneficiary, weiAmount);
         _contributions[beneficiary] = _contributions[beneficiary].add(weiAmount);
     }
@@ -1991,11 +1991,8 @@ contract TokenVesting is Ownable {
     }
 }
 
-<<<<<<< HEAD
+
 contract SpaceTokenPrivateSale is
-=======
-contract SpacePrivateSale is
->>>>>>> bdfa8658654b8e66be209ccfa1f6ecdd298ee002
     Crowdsale,
     CappedCrowdsale,
     CapperRole,
@@ -2125,7 +2122,7 @@ contract SpacePrivateSale is
      * @param beneficiary Token purchaser
      * @param weiAmount Amount of wei contributed
      */
-    function _updatePurchasingState(address beneficiary, uint256 weiAmount) internal {
+    function _updatePurchasingState(address beneficiary, uint256 weiAmount) public {
         super._updatePurchasingState(beneficiary, weiAmount);
         _contributions[beneficiary] = _contributions[beneficiary].add(weiAmount);
     }
@@ -2348,4 +2345,3 @@ contract SpacePrivateSale is
         _postValidatePurchase(beneficiary, weiAmount);
     }
 }
-
