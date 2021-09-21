@@ -1990,7 +1990,7 @@ contract TokenVesting is Ownable {
     }
 }
 
-contract TSTokenPrivateSale is
+contract SpacePrivateSale is
     Crowdsale,
     CappedCrowdsale,
     CapperRole,
