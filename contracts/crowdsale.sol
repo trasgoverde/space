@@ -921,8 +921,10 @@ contract Crowdsale is Context, ReentrancyGuard {
 
     // How many token units a buyer gets per wei.
     // The rate is the conversion between wei and the smallest and indivisible token unit.
-    // So, if you are using a rate of 1 with a ERC20Detailed token with 18 decimals called SPACE
-    // 1 wei will give you 50.000 SPACE.
+    // So, if you are using a rate of 1 with a ERC20Detailed token with 18 decimals called SPACE.
+    // 1 wei will give you 0,00000000000005 SPACE.
+    // 1 ether will give you 50.000 SPACE.
+    // 1 ether = 1000000000000000000 wei.
     uint256 private _rate;
 
     // Amount of wei raised
