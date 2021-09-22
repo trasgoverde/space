@@ -24,7 +24,7 @@
 *You’re not a product anymore. We are developing advanced solutions to improve commerce and the economy at large.
  */
 
-pragma solidity ^0.8.0;
+pragma solidity 0.8.0;
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
@@ -1160,15 +1160,15 @@ abstract contract ERC20PermitUpgradeable is Initializable, ERC20Upgradeable, IER
      *
      * It's a good idea to use the same `name` that is defined as the ERC20 token name.
      */
-    function __ERC20Permit_init(string memory name) internal initializer {
-        __Context_init_unchained();
-        __EIP712_init_unchained(name, "1");
-        __ERC20Permit_init_unchained(name);
-    }
+   // function __ERC20Permit_init(string memory name) internal initializer {
+    //    __Context_init_unchained();
+     //   __EIP712_init_unchained(name, "1");
+       // __ERC20Permit_init_unchained(name);
+    //}
 
-    function __ERC20Permit_init_unchained(string memory name) internal initializer {
-        _PERMIT_TYPEHASH = keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
-    }
+   // function __ERC20Permit_init_unchained(string memory name) internal initializer {
+     //   _PERMIT_TYPEHASH = keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
+   // }
 
     /**
      * @dev See {IERC20Permit-permit}.
@@ -1721,7 +1721,7 @@ contract SPACE is ERC20Upgradeable, ERC20BurnableUpgradeable, ERC20SnapshotUpgra
     
     function initialize() initializer public {
         __ERC20_init_unchained("Spacelens", "SPACE");
-        __ERC20Permit_init_unchained("Spacelens");
+        //__ERC20Permit_init_unchained("Spacelens");
         
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(SNAPSHOT_ROLE, msg.sender);
