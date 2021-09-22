@@ -1105,6 +1105,22 @@ contract Crowdsale is Context, ReentrancyGuard {
  * @dev Crowdsale accepting contributions only within a time frame.
  */
 contract TimedCrowdsale is Crowdsale {
+    function setCrowdsaleStage(uint _stage) public onlyOwner {    
+    if(uint(CrowdsaleStage.PreICO) == _stage) {
+      stage = CrowdsaleStage.PreICO;
+    } else if (uint(CrowdsaleStage.ICO) == _stage) {
+      stage = CrowdsaleStage.ICO;
+    }
+
+    if(stage == CrowdsaleStage.PreICO) {
+      rate = 100000;
+    } else if (stage == CrowdsaleStage.ICO) {
+      rate = 75000;
+    } else if (stage == CrowdsaleStage.PostICO) {
+      rate = 50000;
+    }
+  }
+
     using SafeMath for uint256;
 
     uint256 private _openingTime;
