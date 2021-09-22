@@ -1108,11 +1108,17 @@ contract TimedCrowdsale is Crowdsale {
     using SafeMath for uint256;
 
     uint256 private _openingTime;
+    uint private _preIcoStage;
+    uint private _icoStage;
+    uint private _postIco;
     uint256 private _closingTime;
 
     /**
      * Event for crowdsale extending
      * @param newClosingTime new closing time
+     * @param new_preIcoStage new preICO stage
+     * @param new_ico new ICO stage
+     * @param new_postIcoStage new postICO stage 
      * @param prevClosingTime old closing time
      */
     event TimedCrowdsaleExtended(uint256 prevClosingTime, uint256 newClosingTime);
@@ -1126,17 +1132,27 @@ contract TimedCrowdsale is Crowdsale {
     }
 
     /**
-     * @dev Constructor, takes crowdsale opening and closing times.
+     * @dev Constructor, takes crowdsale opening and closing times + ICO Stages.
      * @param openingTime Crowdsale opening time
+     * @param new_preIcoStage new preICO stage
+     * @param new_ico new ICO stage
+     * @param new_postIcoStage new postICO stage 
      * @param closingTime Crowdsale closing time
      */
-    constructor (uint256 openingTime, uint256 closingTime) public {
-        // solhint-disable-next-line not-rely-on-time
+    constructor (uint256 openingTime, uint preIco, uint ico, uint postIco, uint256 closingTime) 
+           public {
+        // solhint-disable-next-line not-rely-on-time, security update require =>block.number
         require(openingTime >= block.timestamp, "TimedCrowdsale: opening time is before current time");
         // solhint-disable-next-line max-line-length
+        require(preIco >= block.timestamp, "Pre-ICO Crowdsale has begun");
+        require(ico >=  block.timestamp + 2 weeks, "ICO Crowdsale has begun");
+        require(postIco >= block.timestamp + 4 weeks), "Post-ICO has begun");
         require(closingTime > openingTime, "TimedCrowdsale: opening time is not before closing time");
 
         _openingTime = openingTime;
+        _preIco = preIco;
+        _ico = ico;
+        _postIco = postIco;
         _closingTime = closingTime;
     }
 
@@ -1145,6 +1161,25 @@ contract TimedCrowdsale is Crowdsale {
      */
     function openingTime() public view returns (uint256) {
         return _openingTime;
+    }
+    /**
+     * @return the crowdsale Pre-ICo Stage.
+     */
+    function preIco() public view returns (uint) {
+        return _preIco;
+    }
+    /**
+     * @return the crowdsale ICO Stage.
+     */
+    function ico() public view returns (uint) {
+        return _ico;
+    }
+
+        /**
+     * @return the crowdsale Post-ICo Stage.
+     */
+    function postIco() public view returns (uint) {
+        return _postIco;
     }
 
     /**
@@ -1161,6 +1196,35 @@ contract TimedCrowdsale is Crowdsale {
         // solhint-disable-next-line not-rely-on-time
         return block.timestamp >= _openingTime && block.timestamp <= _closingTime;
     }
+    /**
+     * @return true if the crowdsale is at Pre-ICO, false otherwise.
+     */
+    function isPreIco() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return block.timestamp >= _openingTime && block.timestamp <= _ico;
+
+        if (block.timestamp >=_openingTime && block.timestamp < _ico) {
+            rate = 100000;}
+    }
+     /**
+     * @return true if the crowdsale is at ICO, false otherwise.
+     */
+       function isIco() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return block.timestamp >=_preIco && block.timestamp <= _postIco;
+        
+        if (block.timestamp >=_preIco && block.timestamp < _postIco) {
+            rate = 750000;}
+    }
+    /**
+     * @return true if the crowdsale is at Post-ICO, false otherwise.
+     */
+       function isPostIco() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return block.timestamp >= _ico && block.timestamp <= _closingTime;
+                if (block.timestamp >=_preIco && block.timestamp < _postIco) {
+            rate = 750000;}
+    }
 
     /**
      * @dev Checks whether the period in which the crowdsale is open has already elapsed.
@@ -1169,6 +1233,8 @@ contract TimedCrowdsale is Crowdsale {
     function hasClosed() public view returns (bool) {
         // solhint-disable-next-line not-rely-on-time
         return block.timestamp > _closingTime;
+        if (block.timestamp >=_Ico && block.timestamp < _closingTime) {
+            rate = 50000;}        
     }
 
     /**
