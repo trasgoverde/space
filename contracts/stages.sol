@@ -6,6 +6,13 @@ contract Stages{
   * @dev Allows admin to update the crowdsale stage
   * @param _stage Crowdsale stage
   */
+  enum CrowdsaleStages {PreICO (uint _stage), ICO (uint _stage),
+   PostICO (uint _stage)} public {
+    PreICO[0] = _stage;
+    ICO[1] = _stage;
+    PostICO [2] = _stage;
+  }
+  CrowdsaleStage public stage =CorwdsaleStage.PreICO;
   function setCrowdsaleStage(uint _stage) public onlyOwner {    
     if(uint(CrowdsaleStage.PreICO) == _stage) {
       stage = CrowdsaleStage.PreICO;
@@ -29,8 +36,9 @@ contract Stages{
     if(stage == CrowdsaleStage.PreICO) {
       wallet.transfer(msg.value);
     } else if (stage == CrowdsaleStage.ICO) {
+      wallet.transfer(msg.value);
+    }  else if (stage == CrowdsaleStage.PostICO) {
       super._forwardFunds();
-    }
   }
 
   /**
