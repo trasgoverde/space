@@ -1,0 +1,705 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterAddress" {
+  graph [ label = "Address  (lib)", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "Address.isContract" [ label = "isContract" ];
+  "Address.sendValue" [ label = "sendValue", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Address.functionCall" [ label = "functionCall" ];
+  "Address.functionCallWithValue" [ label = "functionCallWithValue" ];
+  "Address._functionCallWithValue" [ label = "_functionCallWithValue" ];
+}
+
+subgraph "clusterRoles" {
+  graph [ label = "Roles  (lib)", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "Roles.add" [ label = "add", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Roles.remove" [ label = "remove", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Roles.has" [ label = "has" ];
+}
+
+subgraph "clusterIERC20" {
+  graph [ label = "IERC20  (iface)", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "IERC20.totalSupply" [ label = "totalSupply", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IERC20.decimals" [ label = "decimals" ];
+  "IERC20.symbol" [ label = "symbol", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IERC20.name" [ label = "name", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IERC20.getOwner" [ label = "getOwner", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IERC20.balanceOf" [ label = "balanceOf" ];
+  "IERC20.transfer" [ label = "transfer" ];
+  "IERC20.allowance" [ label = "allowance" ];
+  "IERC20.approve" [ label = "approve", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IERC20.transferFrom" [ label = "transferFrom", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IERC20.functionCall" [ label = "functionCall" ];
+  "IERC20.safeTransfer" [ label = "safeTransfer" ];
+}
+
+subgraph "clusterSafeERC20" {
+  graph [ label = "SafeERC20  (lib)", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "SafeERC20.safeTransfer" [ label = "safeTransfer", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SafeERC20.safeTransferFrom" [ label = "safeTransferFrom", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SafeERC20.safeApprove" [ label = "safeApprove", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SafeERC20.safeIncreaseAllowance" [ label = "safeIncreaseAllowance", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SafeERC20.safeDecreaseAllowance" [ label = "safeDecreaseAllowance", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SafeERC20._callOptionalReturn" [ label = "_callOptionalReturn" ];
+}
+
+subgraph "clusterSafeMath" {
+  graph [ label = "SafeMath  (lib)", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "SafeMath.add" [ label = "add", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SafeMath.sub" [ label = "sub" ];
+  "SafeMath.mul" [ label = "mul", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SafeMath.div" [ label = "div" ];
+  "SafeMath.mod" [ label = "mod" ];
+}
+
+subgraph "clusterContext" {
+  graph [ label = "Context", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "Context.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Context._msgSender" [ label = "_msgSender", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Context._msgData" [ label = "_msgData", color = "#f2c383", fillcolor = "#f2c383" ];
+}
+
+subgraph "clusterSecondary" {
+  graph [ label = "Secondary", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "Secondary.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Secondary.onlyPrimary" [ label = "onlyPrimary", color = "#1bc6a6", shape =doubleoctagon ];
+  "Secondary.primary" [ label = "primary", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Secondary.transferPrimary" [ label = "transferPrimary", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Secondary._msgSender" [ label = "_msgSender" ];
+}
+
+subgraph "clusterReentrancyGuard" {
+  graph [ label = "ReentrancyGuard", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ReentrancyGuard.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "ReentrancyGuard.nonReentrant" [ label = "nonReentrant", color = "#1bc6a6", shape =doubleoctagon ];
+}
+
+subgraph "cluster__unstable__TokenVault" {
+  graph [ label = "__unstable__TokenVault", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "__unstable__TokenVault.transfer" [ label = "transfer", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterCapperRole" {
+  graph [ label = "CapperRole", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CapperRole.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "CapperRole.onlyCapper" [ label = "onlyCapper", color = "#1bc6a6", shape =doubleoctagon ];
+  "CapperRole.isCapper" [ label = "isCapper" ];
+  "CapperRole.addCapper" [ label = "addCapper", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CapperRole.renounceCapper" [ label = "renounceCapper", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CapperRole._addCapper" [ label = "_addCapper" ];
+  "CapperRole._removeCapper" [ label = "_removeCapper" ];
+  "CapperRole._msgSender" [ label = "_msgSender" ];
+  "CapperRole._preValidatePurchase" [ label = "_preValidatePurchase" ];
+  "CapperRole._updatePurchasingState" [ label = "_updatePurchasingState" ];
+}
+
+subgraph "clusterWhitelistAdminRole" {
+  graph [ label = "WhitelistAdminRole", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "WhitelistAdminRole.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "WhitelistAdminRole.onlyWhitelistAdmin" [ label = "onlyWhitelistAdmin", color = "#1bc6a6", shape =doubleoctagon ];
+  "WhitelistAdminRole.isWhitelistAdmin" [ label = "isWhitelistAdmin" ];
+  "WhitelistAdminRole.addWhitelistAdmin" [ label = "addWhitelistAdmin", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WhitelistAdminRole.renounceWhitelistAdmin" [ label = "renounceWhitelistAdmin", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WhitelistAdminRole._addWhitelistAdmin" [ label = "_addWhitelistAdmin" ];
+  "WhitelistAdminRole._removeWhitelistAdmin" [ label = "_removeWhitelistAdmin" ];
+  "WhitelistAdminRole._msgSender" [ label = "_msgSender" ];
+}
+
+subgraph "clusterWhitelistedRole" {
+  graph [ label = "WhitelistedRole", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "WhitelistedRole.onlyWhitelisted" [ label = "onlyWhitelisted", color = "#1bc6a6", shape =doubleoctagon ];
+  "WhitelistedRole.isWhitelisted" [ label = "isWhitelisted" ];
+  "WhitelistedRole.addWhitelisted" [ label = "addWhitelisted", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WhitelistedRole.removeWhitelisted" [ label = "removeWhitelisted", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WhitelistedRole.renounceWhitelisted" [ label = "renounceWhitelisted", color = "#FF9797", fillcolor = "#FF9797" ];
+  "WhitelistedRole._addWhitelisted" [ label = "_addWhitelisted" ];
+  "WhitelistedRole._removeWhitelisted" [ label = "_removeWhitelisted" ];
+}
+
+subgraph "clusterPauserRole" {
+  graph [ label = "PauserRole", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PauserRole.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "PauserRole.onlyPauser" [ label = "onlyPauser", color = "#1bc6a6", shape =doubleoctagon ];
+  "PauserRole.isPauser" [ label = "isPauser" ];
+  "PauserRole.addPauser" [ label = "addPauser", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PauserRole.renouncePauser" [ label = "renouncePauser", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PauserRole._addPauser" [ label = "_addPauser" ];
+  "PauserRole._removePauser" [ label = "_removePauser" ];
+  "PauserRole._msgSender" [ label = "_msgSender" ];
+}
+
+subgraph "clusterPausable" {
+  graph [ label = "Pausable", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "Pausable.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Pausable.paused" [ label = "paused", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Pausable.whenNotPaused" [ label = "whenNotPaused", color = "#1bc6a6", shape =doubleoctagon ];
+  "Pausable.whenPaused" [ label = "whenPaused", color = "#1bc6a6", shape =doubleoctagon ];
+  "Pausable.pause" [ label = "pause", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Pausable.unpause" [ label = "unpause", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Pausable._preValidatePurchase" [ label = "_preValidatePurchase" ];
+}
+
+subgraph "clusterCrowdsale" {
+  graph [ label = "Crowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "Crowdsale.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Crowdsale.<Fallback>" [ label = "<Fallback>", color = "brown", fillcolor = "#ffbdb9" ];
+  "Crowdsale.token" [ label = "token", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Crowdsale.wallet" [ label = "wallet", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Crowdsale.rate" [ label = "rate", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Crowdsale.weiRaised" [ label = "weiRaised", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Crowdsale.buyTokens" [ label = "buyTokens" ];
+  "Crowdsale.updateWeiRaised" [ label = "updateWeiRaised", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Crowdsale._preValidatePurchase" [ label = "_preValidatePurchase" ];
+  "Crowdsale._postValidatePurchase" [ label = "_postValidatePurchase" ];
+  "Crowdsale._deliverTokens" [ label = "_deliverTokens", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Crowdsale._processPurchase" [ label = "_processPurchase" ];
+  "Crowdsale._updatePurchasingState" [ label = "_updatePurchasingState" ];
+  "Crowdsale._getTokenAmount" [ label = "_getTokenAmount" ];
+  "Crowdsale._forwardFunds" [ label = "_forwardFunds" ];
+  "Crowdsale._msgSender" [ label = "_msgSender" ];
+}
+
+subgraph "clusterTimedCrowdsale" {
+  graph [ label = "TimedCrowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "TimedCrowdsale.setCrowdsaleStage" [ label = "setCrowdsaleStage", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TimedCrowdsale.onlyWhileOpen" [ label = "onlyWhileOpen", color = "#1bc6a6", shape =doubleoctagon ];
+  "TimedCrowdsale.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TimedCrowdsale.openingTime" [ label = "openingTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TimedCrowdsale.closingTime" [ label = "closingTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TimedCrowdsale.isOpen" [ label = "isOpen" ];
+  "TimedCrowdsale.hasClosed" [ label = "hasClosed" ];
+  "TimedCrowdsale._preValidatePurchase" [ label = "_preValidatePurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+  "TimedCrowdsale._extendTime" [ label = "_extendTime", color = "#f2c383", fillcolor = "#f2c383" ];
+  "TimedCrowdsale._forceClosed" [ label = "_forceClosed", color = "#f2c383", fillcolor = "#f2c383" ];
+}
+
+subgraph "clusterPostDeliveryCrowdsale" {
+  graph [ label = "PostDeliveryCrowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PostDeliveryCrowdsale.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PostDeliveryCrowdsale.withdrawTokens" [ label = "withdrawTokens", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PostDeliveryCrowdsale.balanceOf" [ label = "balanceOf", color = "#FF9797", fillcolor = "#FF9797" ];
+  "PostDeliveryCrowdsale._processPurchase" [ label = "_processPurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+  "PostDeliveryCrowdsale.token" [ label = "token" ];
+}
+
+subgraph "clusterFinalizableCrowdsale" {
+  graph [ label = "FinalizableCrowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "FinalizableCrowdsale.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "FinalizableCrowdsale.finalized" [ label = "finalized", color = "#FF9797", fillcolor = "#FF9797" ];
+  "FinalizableCrowdsale.finalize" [ label = "finalize", color = "#FF9797", fillcolor = "#FF9797" ];
+  "FinalizableCrowdsale._finalization" [ label = "_finalization" ];
+}
+
+subgraph "clusterPausableCrowdsale" {
+  graph [ label = "PausableCrowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "PausableCrowdsale._preValidatePurchase" [ label = "_preValidatePurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+}
+
+subgraph "clusterWhitelistCrowdsale" {
+  graph [ label = "WhitelistCrowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "WhitelistCrowdsale._preValidatePurchase" [ label = "_preValidatePurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+}
+
+subgraph "clusterIndividuallyCappedCrowdsale" {
+  graph [ label = "IndividuallyCappedCrowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "IndividuallyCappedCrowdsale.setCap" [ label = "setCap", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "IndividuallyCappedCrowdsale.getCap" [ label = "getCap", color = "#FF9797", fillcolor = "#FF9797" ];
+  "IndividuallyCappedCrowdsale.getContribution" [ label = "getContribution", color = "#FF9797", fillcolor = "#FF9797" ];
+  "IndividuallyCappedCrowdsale._preValidatePurchase" [ label = "_preValidatePurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+  "IndividuallyCappedCrowdsale._updatePurchasingState" [ label = "_updatePurchasingState", color = "#FF9797", fillcolor = "#FF9797" ];
+}
+
+subgraph "clusterCappedCrowdsale" {
+  graph [ label = "CappedCrowdsale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "CappedCrowdsale.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedCrowdsale.cap" [ label = "cap", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedCrowdsale.capReached" [ label = "capReached", color = "#FF9797", fillcolor = "#FF9797" ];
+  "CappedCrowdsale._preValidatePurchase" [ label = "_preValidatePurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+  "CappedCrowdsale.weiRaised" [ label = "weiRaised" ];
+}
+
+subgraph "clusterOwnable" {
+  graph [ label = "Ownable", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "Ownable.<Constructor>" [ label = "<Constructor>", color = "#f2c383", fillcolor = "#f2c383" ];
+  "Ownable.owner" [ label = "owner", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Ownable.onlyOwner" [ label = "onlyOwner", color = "#1bc6a6", shape =doubleoctagon ];
+  "Ownable.renounceOwnership" [ label = "renounceOwnership", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Ownable.transferOwnership" [ label = "transferOwnership", color = "#FF9797", fillcolor = "#FF9797" ];
+  "Ownable._transferOwnership" [ label = "_transferOwnership" ];
+  "Ownable._msgSender" [ label = "_msgSender" ];
+}
+
+subgraph "clusterERC20Token" {
+  graph [ label = "ERC20Token", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "ERC20Token.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.getOwner" [ label = "getOwner", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "ERC20Token.name" [ label = "name", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.decimals" [ label = "decimals", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.symbol" [ label = "symbol", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.totalSupply" [ label = "totalSupply", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.balanceOf" [ label = "balanceOf", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.transfer" [ label = "transfer", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.allowance" [ label = "allowance", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.approve" [ label = "approve", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.transferFrom" [ label = "transferFrom", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.increaseAllowance" [ label = "increaseAllowance", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.decreaseAllowance" [ label = "decreaseAllowance", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token.mint" [ label = "mint", color = "#FF9797", fillcolor = "#FF9797" ];
+  "ERC20Token._transfer" [ label = "_transfer" ];
+  "ERC20Token._mint" [ label = "_mint" ];
+  "ERC20Token._burn" [ label = "_burn", color = "#f2c383", fillcolor = "#f2c383" ];
+  "ERC20Token._approve" [ label = "_approve" ];
+  "ERC20Token._burnFrom" [ label = "_burnFrom", color = "#f2c383", fillcolor = "#f2c383" ];
+  "ERC20Token.owner" [ label = "owner" ];
+}
+
+subgraph "clusterTokenVesting" {
+  graph [ label = "TokenVesting", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "TokenVesting.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.beneficiary" [ label = "beneficiary", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.cliff" [ label = "cliff", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.start" [ label = "start", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.duration" [ label = "duration", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.revocable" [ label = "revocable", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.released" [ label = "released", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.revoked" [ label = "revoked", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.release" [ label = "release", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.revoke" [ label = "revoke", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.extendVestDuration" [ label = "extendVestDuration", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.extendCliffDuration" [ label = "extendCliffDuration", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting._releasableAmount" [ label = "_releasableAmount" ];
+  "TokenVesting._vestedAmount" [ label = "_vestedAmount" ];
+  "TokenVesting.getTotalAmount" [ label = "getTotalAmount", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.getLeftoverAmount" [ label = "getLeftoverAmount", color = "#FF9797", fillcolor = "#FF9797" ];
+  "TokenVesting.owner" [ label = "owner" ];
+}
+
+subgraph "clusterSpaceTokenPrivateSale" {
+  graph [ label = "SpaceTokenPrivateSale", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "SpaceTokenPrivateSale.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.changeCliffWalletWithdrawTime" [ label = "changeCliffWalletWithdrawTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.changeCliffWalletEndTime" [ label = "changeCliffWalletEndTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.setCap" [ label = "setCap", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+  "SpaceTokenPrivateSale.getCap" [ label = "getCap" ];
+  "SpaceTokenPrivateSale.getContribution" [ label = "getContribution", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale._preValidatePurchase" [ label = "_preValidatePurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SpaceTokenPrivateSale._updatePurchasingState" [ label = "_updatePurchasingState", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.extendTime" [ label = "extendTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.closeCrowdSale" [ label = "closeCrowdSale", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.getInviter" [ label = "getInviter", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.addWhitelistedList" [ label = "addWhitelistedList", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale._processCommision" [ label = "_processCommision", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SpaceTokenPrivateSale.withdrawTokens" [ label = "withdrawTokens", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.checkCommisions" [ label = "checkCommisions", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.checkTotalBalanceInCliff" [ label = "checkTotalBalanceInCliff", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.checkWithdrawAmount" [ label = "checkWithdrawAmount", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.checkLeftAmount" [ label = "checkLeftAmount", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.checkCliffTime" [ label = "checkCliffTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.checkStartTime" [ label = "checkStartTime", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.balanceOf" [ label = "balanceOf", color = "#FF9797", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale._processPurchase" [ label = "_processPurchase", color = "#f2c383", fillcolor = "#f2c383" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" [ label = "buyTokensWithValueAndReferee", color = "brown", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" [ label = "buyTokensWithValue", color = "brown", fillcolor = "#FF9797" ];
+  "SpaceTokenPrivateSale.token" [ label = "token" ];
+}
+
+subgraph "clusterRoles.Role" {
+  graph [ label = "Roles.Role", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "Roles.Role.has" [ label = "has" ];
+  "Roles.Role.add" [ label = "add" ];
+  "Roles.Role.remove" [ label = "remove" ];
+}
+
+subgraph "cluster_weiRaised" {
+  graph [ label = "_weiRaised", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_weiRaised.add" [ label = "add" ];
+}
+
+subgraph "clusterweiAmount" {
+  graph [ label = "weiAmount", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "weiAmount.mul" [ label = "mul" ];
+}
+
+subgraph "cluster_wallet" {
+  graph [ label = "_wallet", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_wallet.transfer" [ label = "transfer" ];
+}
+
+subgraph "cluster_totalSupply" {
+  graph [ label = "_totalSupply", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_totalSupply.add" [ label = "add" ];
+  "_totalSupply.sub" [ label = "sub" ];
+}
+
+subgraph "clusterstart" {
+  graph [ label = "start", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "start.add" [ label = "add" ];
+}
+
+subgraph "clusterbalance" {
+  graph [ label = "balance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "balance.sub" [ label = "sub" ];
+}
+
+subgraph "cluster_start" {
+  graph [ label = "_start", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_start.add" [ label = "add" ];
+}
+
+subgraph "clusternewStartTime" {
+  graph [ label = "newStartTime", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "newStartTime.add" [ label = "add" ];
+}
+
+subgraph "clustercurrentBalance" {
+  graph [ label = "currentBalance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "currentBalance.add" [ label = "add" ];
+}
+
+subgraph "clustertotalBalance" {
+  graph [ label = "totalBalance", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "totalBalance.mul" [ label = "mul" ];
+}
+
+  "Address.functionCall";
+  "Address._functionCallWithValue";
+  "Address.functionCallWithValue";
+  "Address.isContract";
+  "Roles.add";
+  "Roles.has";
+  "Roles.remove";
+  "SafeERC20.safeTransfer";
+  "SafeERC20._callOptionalReturn";
+  "SafeERC20.safeTransferFrom";
+  "SafeERC20.safeApprove";
+  "IERC20.allowance";
+  "SafeERC20.safeIncreaseAllowance";
+  "SafeERC20.safeDecreaseAllowance";
+  "IERC20.functionCall";
+  "SafeMath.sub";
+  "SafeMath.div";
+  "SafeMath.mod";
+  "Secondary.<Constructor>";
+  "Secondary._msgSender";
+  "Secondary.onlyPrimary";
+  "__unstable__TokenVault.transfer";
+  "IERC20.transfer";
+  "CapperRole.<Constructor>";
+  "CapperRole._addCapper";
+  "CapperRole._msgSender";
+  "CapperRole.onlyCapper";
+  "CapperRole.isCapper";
+  "Roles.Role.has";
+  "CapperRole.addCapper";
+  "CapperRole.renounceCapper";
+  "CapperRole._removeCapper";
+  "Roles.Role.add";
+  "Roles.Role.remove";
+  "WhitelistAdminRole.<Constructor>";
+  "WhitelistAdminRole._addWhitelistAdmin";
+  "WhitelistAdminRole._msgSender";
+  "WhitelistAdminRole.onlyWhitelistAdmin";
+  "WhitelistAdminRole.isWhitelistAdmin";
+  "WhitelistAdminRole.addWhitelistAdmin";
+  "WhitelistAdminRole.renounceWhitelistAdmin";
+  "WhitelistAdminRole._removeWhitelistAdmin";
+  "WhitelistedRole.onlyWhitelisted";
+  "WhitelistedRole.isWhitelisted";
+  "WhitelistedRole.addWhitelisted";
+  "WhitelistedRole._addWhitelisted";
+  "WhitelistedRole.removeWhitelisted";
+  "WhitelistedRole._removeWhitelisted";
+  "WhitelistedRole.renounceWhitelisted";
+  "PauserRole.<Constructor>";
+  "PauserRole._addPauser";
+  "PauserRole._msgSender";
+  "PauserRole.onlyPauser";
+  "PauserRole.isPauser";
+  "PauserRole.addPauser";
+  "PauserRole.renouncePauser";
+  "PauserRole._removePauser";
+  "Pausable.pause";
+  "Pausable.unpause";
+  "Crowdsale.<Fallback>";
+  "Crowdsale.buyTokens";
+  "Crowdsale._msgSender";
+  "Crowdsale._preValidatePurchase";
+  "Crowdsale._getTokenAmount";
+  "_weiRaised.add";
+  "Crowdsale._processPurchase";
+  "Crowdsale._updatePurchasingState";
+  "Crowdsale._forwardFunds";
+  "Crowdsale._postValidatePurchase";
+  "Crowdsale.updateWeiRaised";
+  "Crowdsale._deliverTokens";
+  "IERC20.safeTransfer";
+  "weiAmount.mul";
+  "_wallet.transfer";
+  "TimedCrowdsale.onlyWhileOpen";
+  "TimedCrowdsale.isOpen";
+  "TimedCrowdsale._extendTime";
+  "TimedCrowdsale.hasClosed";
+  "TimedCrowdsale._forceClosed";
+  "PostDeliveryCrowdsale.withdrawTokens";
+  "PostDeliveryCrowdsale.token";
+  "FinalizableCrowdsale.finalize";
+  "FinalizableCrowdsale._finalization";
+  "Pausable._preValidatePurchase";
+  "CapperRole._preValidatePurchase";
+  "CapperRole._updatePurchasingState";
+  "CappedCrowdsale.capReached";
+  "CappedCrowdsale.weiRaised";
+  "Ownable.<Constructor>";
+  "Ownable._msgSender";
+  "Ownable.onlyOwner";
+  "Ownable.transferOwnership";
+  "Ownable._transferOwnership";
+  "ERC20Token.getOwner";
+  "ERC20Token.owner";
+  "ERC20Token._transfer";
+  "ERC20Token.approve";
+  "ERC20Token._approve";
+  "ERC20Token.transferFrom";
+  "ERC20Token.increaseAllowance";
+  "ERC20Token.decreaseAllowance";
+  "ERC20Token.mint";
+  "ERC20Token._mint";
+  "_totalSupply.add";
+  "ERC20Token._burn";
+  "_totalSupply.sub";
+  "ERC20Token._burnFrom";
+  "start.add";
+  "TokenVesting.release";
+  "TokenVesting._releasableAmount";
+  "TokenVesting.revoke";
+  "IERC20.balanceOf";
+  "balance.sub";
+  "TokenVesting.owner";
+  "TokenVesting.extendVestDuration";
+  "_start.add";
+  "TokenVesting.extendCliffDuration";
+  "newStartTime.add";
+  "TokenVesting._vestedAmount";
+  "currentBalance.add";
+  "totalBalance.mul";
+  "TokenVesting.getTotalAmount";
+  "TokenVesting.getLeftoverAmount";
+  "SpaceTokenPrivateSale.getCap";
+  "SpaceTokenPrivateSale.extendTime";
+  "SpaceTokenPrivateSale.closeCrowdSale";
+  "SpaceTokenPrivateSale.addWhitelistedList";
+  "SpaceTokenPrivateSale._processCommision";
+  "SpaceTokenPrivateSale.withdrawTokens";
+  "SpaceTokenPrivateSale.token";
+  "SpaceTokenPrivateSale.checkTotalBalanceInCliff";
+  "SpaceTokenPrivateSale.checkWithdrawAmount";
+  "SpaceTokenPrivateSale.checkLeftAmount";
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee";
+  "IERC20.decimals";
+  "SpaceTokenPrivateSale.buyTokensWithValue";
+  "Address.functionCall" -> "Address.functionCall" [ color = "#1bc6a6" ];
+  "Address.functionCall" -> "Address._functionCallWithValue" [ color = "#1bc6a6" ];
+  "Address.functionCallWithValue" -> "Address.functionCallWithValue" [ color = "#1bc6a6" ];
+  "Address.functionCallWithValue" -> "Address._functionCallWithValue" [ color = "#1bc6a6" ];
+  "Address._functionCallWithValue" -> "Address.isContract" [ color = "#1bc6a6" ];
+  "Roles.add" -> "Roles.has" [ color = "#1bc6a6" ];
+  "Roles.remove" -> "Roles.has" [ color = "#1bc6a6" ];
+  "SafeERC20.safeTransfer" -> "SafeERC20._callOptionalReturn" [ color = "#1bc6a6" ];
+  "SafeERC20.safeTransferFrom" -> "SafeERC20._callOptionalReturn" [ color = "#1bc6a6" ];
+  "SafeERC20.safeApprove" -> "IERC20.allowance" [ color = "white" ];
+  "SafeERC20.safeApprove" -> "SafeERC20._callOptionalReturn" [ color = "#1bc6a6" ];
+  "SafeERC20.safeIncreaseAllowance" -> "IERC20.allowance" [ color = "white" ];
+  "SafeERC20.safeIncreaseAllowance" -> "SafeERC20._callOptionalReturn" [ color = "#1bc6a6" ];
+  "SafeERC20.safeDecreaseAllowance" -> "IERC20.allowance" [ color = "white" ];
+  "SafeERC20.safeDecreaseAllowance" -> "SafeERC20._callOptionalReturn" [ color = "#1bc6a6" ];
+  "SafeERC20._callOptionalReturn" -> "IERC20.functionCall" [ color = "white" ];
+  "SafeMath.sub" -> "SafeMath.sub" [ color = "#1bc6a6" ];
+  "SafeMath.div" -> "SafeMath.div" [ color = "#1bc6a6" ];
+  "SafeMath.mod" -> "SafeMath.mod" [ color = "#1bc6a6" ];
+  "Secondary.<Constructor>" -> "Secondary._msgSender" [ color = "#1bc6a6" ];
+  "Secondary.onlyPrimary" -> "Secondary._msgSender" [ color = "#1bc6a6" ];
+  "__unstable__TokenVault.transfer" -> "IERC20.transfer" [ color = "white" ];
+  "CapperRole.<Constructor>" -> "CapperRole._addCapper" [ color = "#1bc6a6" ];
+  "CapperRole.<Constructor>" -> "CapperRole._msgSender" [ color = "#1bc6a6" ];
+  "CapperRole.onlyCapper" -> "CapperRole.isCapper" [ color = "#1bc6a6" ];
+  "CapperRole.onlyCapper" -> "CapperRole._msgSender" [ color = "#1bc6a6" ];
+  "CapperRole.isCapper" -> "Roles.Role.has" [ color = "white" ];
+  "CapperRole.addCapper" -> "CapperRole._addCapper" [ color = "#1bc6a6" ];
+  "CapperRole.renounceCapper" -> "CapperRole._removeCapper" [ color = "#1bc6a6" ];
+  "CapperRole.renounceCapper" -> "CapperRole._msgSender" [ color = "#1bc6a6" ];
+  "CapperRole._addCapper" -> "Roles.Role.add" [ color = "white" ];
+  "CapperRole._removeCapper" -> "Roles.Role.remove" [ color = "white" ];
+  "WhitelistAdminRole.<Constructor>" -> "WhitelistAdminRole._addWhitelistAdmin" [ color = "#1bc6a6" ];
+  "WhitelistAdminRole.<Constructor>" -> "WhitelistAdminRole._msgSender" [ color = "#1bc6a6" ];
+  "WhitelistAdminRole.onlyWhitelistAdmin" -> "WhitelistAdminRole.isWhitelistAdmin" [ color = "#1bc6a6" ];
+  "WhitelistAdminRole.onlyWhitelistAdmin" -> "WhitelistAdminRole._msgSender" [ color = "#1bc6a6" ];
+  "WhitelistAdminRole.isWhitelistAdmin" -> "Roles.Role.has" [ color = "white" ];
+  "WhitelistAdminRole.addWhitelistAdmin" -> "WhitelistAdminRole._addWhitelistAdmin" [ color = "#1bc6a6" ];
+  "WhitelistAdminRole.renounceWhitelistAdmin" -> "WhitelistAdminRole._removeWhitelistAdmin" [ color = "#1bc6a6" ];
+  "WhitelistAdminRole.renounceWhitelistAdmin" -> "WhitelistAdminRole._msgSender" [ color = "#1bc6a6" ];
+  "WhitelistAdminRole._addWhitelistAdmin" -> "Roles.Role.add" [ color = "white" ];
+  "WhitelistAdminRole._removeWhitelistAdmin" -> "Roles.Role.remove" [ color = "white" ];
+  "WhitelistedRole.onlyWhitelisted" -> "WhitelistedRole.isWhitelisted" [ color = "#1bc6a6" ];
+  "WhitelistedRole.onlyWhitelisted" -> "WhitelistAdminRole._msgSender" [ color = "#1bc6a6" ];
+  "WhitelistedRole.isWhitelisted" -> "Roles.Role.has" [ color = "white" ];
+  "WhitelistedRole.addWhitelisted" -> "WhitelistedRole._addWhitelisted" [ color = "#1bc6a6" ];
+  "WhitelistedRole.removeWhitelisted" -> "WhitelistedRole._removeWhitelisted" [ color = "#1bc6a6" ];
+  "WhitelistedRole.renounceWhitelisted" -> "WhitelistedRole._removeWhitelisted" [ color = "#1bc6a6" ];
+  "WhitelistedRole.renounceWhitelisted" -> "WhitelistAdminRole._msgSender" [ color = "#1bc6a6" ];
+  "WhitelistedRole._addWhitelisted" -> "Roles.Role.add" [ color = "white" ];
+  "WhitelistedRole._removeWhitelisted" -> "Roles.Role.remove" [ color = "white" ];
+  "PauserRole.<Constructor>" -> "PauserRole._addPauser" [ color = "#1bc6a6" ];
+  "PauserRole.<Constructor>" -> "PauserRole._msgSender" [ color = "#1bc6a6" ];
+  "PauserRole.onlyPauser" -> "PauserRole.isPauser" [ color = "#1bc6a6" ];
+  "PauserRole.onlyPauser" -> "PauserRole._msgSender" [ color = "#1bc6a6" ];
+  "PauserRole.isPauser" -> "Roles.Role.has" [ color = "white" ];
+  "PauserRole.addPauser" -> "PauserRole._addPauser" [ color = "#1bc6a6" ];
+  "PauserRole.renouncePauser" -> "PauserRole._removePauser" [ color = "#1bc6a6" ];
+  "PauserRole.renouncePauser" -> "PauserRole._msgSender" [ color = "#1bc6a6" ];
+  "PauserRole._addPauser" -> "Roles.Role.add" [ color = "white" ];
+  "PauserRole._removePauser" -> "Roles.Role.remove" [ color = "white" ];
+  "Pausable.pause" -> "PauserRole._msgSender" [ color = "#1bc6a6" ];
+  "Pausable.unpause" -> "PauserRole._msgSender" [ color = "#1bc6a6" ];
+  "Crowdsale.<Fallback>" -> "Crowdsale.buyTokens" [ color = "#1bc6a6" ];
+  "Crowdsale.<Fallback>" -> "Crowdsale._msgSender" [ color = "#1bc6a6" ];
+  "Crowdsale.buyTokens" -> "Crowdsale._preValidatePurchase" [ color = "#1bc6a6" ];
+  "Crowdsale.buyTokens" -> "Crowdsale._getTokenAmount" [ color = "#1bc6a6" ];
+  "Crowdsale.buyTokens" -> "_weiRaised.add" [ color = "white" ];
+  "Crowdsale.buyTokens" -> "Crowdsale._processPurchase" [ color = "#1bc6a6" ];
+  "Crowdsale.buyTokens" -> "Crowdsale._msgSender" [ color = "#1bc6a6" ];
+  "Crowdsale.buyTokens" -> "Crowdsale._updatePurchasingState" [ color = "#1bc6a6" ];
+  "Crowdsale.buyTokens" -> "Crowdsale._forwardFunds" [ color = "#1bc6a6" ];
+  "Crowdsale.buyTokens" -> "Crowdsale._postValidatePurchase" [ color = "#1bc6a6" ];
+  "Crowdsale.updateWeiRaised" -> "_weiRaised.add" [ color = "white" ];
+  "Crowdsale._deliverTokens" -> "IERC20.safeTransfer" [ color = "white" ];
+  "Crowdsale._processPurchase" -> "Crowdsale._deliverTokens" [ color = "#1bc6a6" ];
+  "Crowdsale._getTokenAmount" -> "weiAmount.mul" [ color = "white" ];
+  "Crowdsale._forwardFunds" -> "_wallet.transfer" [ color = "white" ];
+  "TimedCrowdsale.onlyWhileOpen" -> "TimedCrowdsale.isOpen" [ color = "#1bc6a6" ];
+  "Crowdsale._preValidatePurchase" -> "Crowdsale._preValidatePurchase" [ color = "white" ];
+  "TimedCrowdsale._extendTime" -> "TimedCrowdsale.hasClosed" [ color = "#1bc6a6" ];
+  "TimedCrowdsale._forceClosed" -> "TimedCrowdsale.hasClosed" [ color = "#1bc6a6" ];
+  "PostDeliveryCrowdsale.withdrawTokens" -> "TimedCrowdsale.hasClosed" [ color = "#1bc6a6" ];
+  "PostDeliveryCrowdsale.withdrawTokens" -> "__unstable__TokenVault.transfer" [ color = "white" ];
+  "PostDeliveryCrowdsale.withdrawTokens" -> "PostDeliveryCrowdsale.token" [ color = "#1bc6a6" ];
+  "Crowdsale._processPurchase" -> "Crowdsale._deliverTokens" [ color = "#1bc6a6" ];
+  "FinalizableCrowdsale.finalize" -> "TimedCrowdsale.hasClosed" [ color = "#1bc6a6" ];
+  "FinalizableCrowdsale.finalize" -> "FinalizableCrowdsale._finalization" [ color = "#1bc6a6" ];
+  "Crowdsale._preValidatePurchase" -> "Pausable._preValidatePurchase" [ color = "white" ];
+  "Crowdsale._preValidatePurchase" -> "WhitelistedRole.isWhitelisted" [ color = "#1bc6a6" ];
+  "Crowdsale._preValidatePurchase" -> "Crowdsale._preValidatePurchase" [ color = "white" ];
+  "Crowdsale._preValidatePurchase" -> "CapperRole._preValidatePurchase" [ color = "white" ];
+  "Crowdsale._updatePurchasingState" -> "CapperRole._updatePurchasingState" [ color = "white" ];
+  "CappedCrowdsale.capReached" -> "CappedCrowdsale.weiRaised" [ color = "#1bc6a6" ];
+  "Crowdsale._preValidatePurchase" -> "Crowdsale._preValidatePurchase" [ color = "white" ];
+  "Crowdsale._preValidatePurchase" -> "CappedCrowdsale.weiRaised" [ color = "#1bc6a6" ];
+  "Ownable.<Constructor>" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "Ownable.onlyOwner" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "Ownable.transferOwnership" -> "Ownable._transferOwnership" [ color = "#1bc6a6" ];
+  "ERC20Token.getOwner" -> "ERC20Token.owner" [ color = "#1bc6a6" ];
+  "IERC20.transfer" -> "ERC20Token._transfer" [ color = "#1bc6a6" ];
+  "IERC20.transfer" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.approve" -> "ERC20Token._approve" [ color = "#1bc6a6" ];
+  "ERC20Token.approve" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.transferFrom" -> "ERC20Token._transfer" [ color = "#1bc6a6" ];
+  "ERC20Token.transferFrom" -> "ERC20Token._approve" [ color = "#1bc6a6" ];
+  "ERC20Token.transferFrom" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.transferFrom" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.increaseAllowance" -> "ERC20Token._approve" [ color = "#1bc6a6" ];
+  "ERC20Token.increaseAllowance" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.increaseAllowance" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.decreaseAllowance" -> "ERC20Token._approve" [ color = "#1bc6a6" ];
+  "ERC20Token.decreaseAllowance" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.decreaseAllowance" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token.mint" -> "ERC20Token._mint" [ color = "#1bc6a6" ];
+  "ERC20Token.mint" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token._mint" -> "_totalSupply.add" [ color = "white" ];
+  "ERC20Token._burn" -> "_totalSupply.sub" [ color = "white" ];
+  "ERC20Token._burnFrom" -> "ERC20Token._burn" [ color = "#1bc6a6" ];
+  "ERC20Token._burnFrom" -> "ERC20Token._approve" [ color = "#1bc6a6" ];
+  "ERC20Token._burnFrom" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "ERC20Token._burnFrom" -> "Ownable._msgSender" [ color = "#1bc6a6" ];
+  "Ownable.<Constructor>" -> "start.add" [ color = "white" ];
+  "Ownable.<Constructor>" -> "start.add" [ color = "white" ];
+  "TokenVesting.release" -> "TokenVesting._releasableAmount" [ color = "#1bc6a6" ];
+  "TokenVesting.release" -> "IERC20.safeTransfer" [ color = "white" ];
+  "TokenVesting.revoke" -> "IERC20.balanceOf" [ color = "white" ];
+  "TokenVesting.revoke" -> "TokenVesting._releasableAmount" [ color = "#1bc6a6" ];
+  "TokenVesting.revoke" -> "balance.sub" [ color = "white" ];
+  "TokenVesting.revoke" -> "IERC20.safeTransfer" [ color = "white" ];
+  "TokenVesting.revoke" -> "TokenVesting.owner" [ color = "#1bc6a6" ];
+  "TokenVesting.extendVestDuration" -> "_start.add" [ color = "white" ];
+  "TokenVesting.extendCliffDuration" -> "newStartTime.add" [ color = "white" ];
+  "TokenVesting._releasableAmount" -> "TokenVesting._vestedAmount" [ color = "#1bc6a6" ];
+  "TokenVesting._vestedAmount" -> "IERC20.balanceOf" [ color = "white" ];
+  "TokenVesting._vestedAmount" -> "currentBalance.add" [ color = "white" ];
+  "TokenVesting._vestedAmount" -> "_start.add" [ color = "white" ];
+  "TokenVesting._vestedAmount" -> "totalBalance.mul" [ color = "white" ];
+  "TokenVesting.getTotalAmount" -> "IERC20.balanceOf" [ color = "white" ];
+  "TokenVesting.getTotalAmount" -> "currentBalance.add" [ color = "white" ];
+  "TokenVesting.getLeftoverAmount" -> "IERC20.balanceOf" [ color = "white" ];
+  "Pausable._preValidatePurchase" -> "WhitelistedRole.isWhitelisted" [ color = "#1bc6a6" ];
+  "Pausable._preValidatePurchase" -> "Crowdsale._preValidatePurchase" [ color = "white" ];
+  "Pausable._preValidatePurchase" -> "SpaceTokenPrivateSale.getCap" [ color = "#1bc6a6" ];
+  "CapperRole._updatePurchasingState" -> "Crowdsale._updatePurchasingState" [ color = "white" ];
+  "SpaceTokenPrivateSale.extendTime" -> "TimedCrowdsale._extendTime" [ color = "white" ];
+  "SpaceTokenPrivateSale.closeCrowdSale" -> "TimedCrowdsale._forceClosed" [ color = "white" ];
+  "SpaceTokenPrivateSale.addWhitelistedList" -> "WhitelistedRole.addWhitelisted" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale._processCommision" -> "Crowdsale._deliverTokens" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.withdrawTokens" -> "TimedCrowdsale.hasClosed" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.withdrawTokens" -> "SpaceTokenPrivateSale.token" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.withdrawTokens" -> "SpaceTokenPrivateSale.token" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.withdrawTokens" -> "SpaceTokenPrivateSale.token" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.checkTotalBalanceInCliff" -> "SpaceTokenPrivateSale.token" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.checkWithdrawAmount" -> "SpaceTokenPrivateSale.token" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.checkLeftAmount" -> "SpaceTokenPrivateSale.token" [ color = "#1bc6a6" ];
+  "Crowdsale._processPurchase" -> "Crowdsale._deliverTokens" [ color = "#1bc6a6" ];
+  "Crowdsale._processPurchase" -> "Crowdsale._deliverTokens" [ color = "#1bc6a6" ];
+  "Crowdsale._processPurchase" -> "SpaceTokenPrivateSale._processCommision" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "IERC20.decimals" [ color = "white" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "Pausable._preValidatePurchase" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "Crowdsale._getTokenAmount" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "Crowdsale.updateWeiRaised" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "Crowdsale._processPurchase" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "PauserRole._msgSender" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "CapperRole._updatePurchasingState" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "Crowdsale._forwardFunds" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValueAndReferee" -> "Crowdsale._postValidatePurchase" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "IERC20.decimals" [ color = "white" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "Pausable._preValidatePurchase" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "Crowdsale._getTokenAmount" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "Crowdsale.updateWeiRaised" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "Crowdsale._processPurchase" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "PauserRole._msgSender" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "CapperRole._updatePurchasingState" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "Crowdsale._forwardFunds" [ color = "#1bc6a6" ];
+  "SpaceTokenPrivateSale.buyTokensWithValue" -> "Crowdsale._postValidatePurchase" [ color = "#1bc6a6" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 { 
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}
