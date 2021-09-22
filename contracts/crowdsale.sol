@@ -7,7 +7,7 @@ pragma solidity ^0.5.5;
 library Address {
     /**
      * @dev Returns true if `account` is a contract.
-     * @dev Retorna true si la cuenta es un contrato
+     * @dev Retorna true si la cuenta es un contrato.
      * [IMPORTANT]
      * ====
      * It is unsafe to assume that an address for which this function returns
@@ -942,7 +942,9 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @dev The rate is the conversion between wei and the smallest and indivisible
      * token unit. So, if you are using a rate of 1 with a ERC20Detailed token
      * with 18 decimals called SPACE
-     * 1 wei will give you 50.000 SPACE.
+     * 1 wei will give you 0,00000000000005 SPACE.
+     * 1 ether will give you 50.000 SPACE.
+     * 1 ether = 1000000000000000000 wei
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
