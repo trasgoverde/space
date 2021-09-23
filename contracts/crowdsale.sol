@@ -1116,9 +1116,6 @@ contract TimedCrowdsale is Crowdsale {
     /**
      * Event for crowdsale extending
      * @param newClosingTime new closing time
-     * @param new_preIcoStage new preICO stage
-     * @param new_ico new ICO stage
-     * @param new_postIcoStage new postICO stage 
      * @param prevClosingTime old closing time
      */
     event TimedCrowdsaleExtended(uint256 prevClosingTime, uint256 newClosingTime);
@@ -1134,9 +1131,6 @@ contract TimedCrowdsale is Crowdsale {
     /**
      * @dev Constructor, takes crowdsale opening and closing times + ICO Stages.
      * @param openingTime Crowdsale opening time
-     * @param new_preIcoStage new preICO stage
-     * @param new_ico new ICO stage
-     * @param new_postIcoStage new postICO stage 
      * @param closingTime Crowdsale closing time
      */
     constructor (uint256 openingTime, uint preIco, uint ico, uint postIco, uint256 closingTime) 
@@ -1150,8 +1144,8 @@ contract TimedCrowdsale is Crowdsale {
         require(closingTime > openingTime, "TimedCrowdsale: opening time is not before closing time");
 
         _openingTime = openingTime;
-        _preIco = preIco;
-        _ico = ico;
+        preIco = preIco;
+        ico = ico;
         _postIco = postIco;
         _closingTime = closingTime;
     }
@@ -1166,13 +1160,13 @@ contract TimedCrowdsale is Crowdsale {
      * @return the crowdsale Pre-ICo Stage.
      */
     function preIco() public view returns (uint) {
-        return _preIco;
+        return preIco;
     }
     /**
      * @return the crowdsale ICO Stage.
      */
     function ico() public view returns (uint) {
-        return _ico;
+        return ico;
     }
 
         /**
@@ -1201,29 +1195,26 @@ contract TimedCrowdsale is Crowdsale {
      */
     function isPreIco() public view returns (bool) {
         // solhint-disable-next-line not-rely-on-time
-        return block.timestamp >= _openingTime && block.timestamp <= _ico;
+        return block.timestamp >= _openingTime && block.timestamp <= ico;
 
-        if (block.timestamp >=_openingTime && block.timestamp < _ico) {
-            rate = 100000;}
+
     }
      /**
      * @return true if the crowdsale is at ICO, false otherwise.
      */
        function isIco() public view returns (bool) {
         // solhint-disable-next-line not-rely-on-time
-        return block.timestamp >=_preIco && block.timestamp <= _postIco;
+        return block.timestamp >=_preIco && block.timestamp < postIco;
         
-        if (block.timestamp >=_preIco && block.timestamp < _postIco) {
-            rate = 750000;}
+
     }
     /**
      * @return true if the crowdsale is at Post-ICO, false otherwise.
      */
        function isPostIco() public view returns (bool) {
         // solhint-disable-next-line not-rely-on-time
-        return block.timestamp >= _ico && block.timestamp <= _closingTime;
-                if (block.timestamp >=_preIco && block.timestamp < _postIco) {
-            rate = 750000;}
+        return block.timestamp >= _ico && block.timestamp < _closingTime;
+
     }
 
     /**
@@ -1233,8 +1224,7 @@ contract TimedCrowdsale is Crowdsale {
     function hasClosed() public view returns (bool) {
         // solhint-disable-next-line not-rely-on-time
         return block.timestamp > _closingTime;
-        if (block.timestamp >=_Ico && block.timestamp < _closingTime) {
-            rate = 50000;}        
+             
     }
 
     /**
@@ -1593,16 +1583,6 @@ contract ERC20Token is Context, IERC20, Ownable
      * All three of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor() public {
-    _name = "SPACE";
-    _symbol = "SPACE";
-    _decimals = 18;
-    _totalSupply = 1000000000 * 10 ** uint256(_decimals);
-    _balances[msg.sender] = _totalSupply;
-
-    emit Transfer(address(0), msg.sender, _totalSupply);
-  }
-
     /**
      * @dev Returns the erc token owner.
      */
@@ -2106,6 +2086,9 @@ contract SpaceTokenPrivateSale is
         _totalCap = totalSaleCap;
         _individualDefaultCap = individualPurchaseCap;
         _openingTime = openingTime;
+        _preIco = preIco;
+        _ico = ico;
+        _postIco = postIco;
         _closingTime = closingTime;
         _wallet = walletAddress;
         _rate = rate;
