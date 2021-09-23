@@ -1,3 +1,8 @@
 {
-    "solidity.compileUsingRemoteVersion": "v0.5.17+commit.d19bba13"
+    "solidity.compileUsingRemoteVersion": "v0.8.0+commit.c7dfd78e",
+    "solidity-va.hover": false,
+    "solidity-va.deco.statevars": true,
+    "solidity-va.deco.arguments": true,
+    "solidity-va.deco.warn.reserved": true,
+    "solidity-va.deco.warn.externalCalls": true
 }
