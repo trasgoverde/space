@@ -1146,7 +1146,7 @@ contract TimedCrowdsale is Crowdsale {
         // solhint-disable-next-line max-line-length
         require(preIco >= block.timestamp, "Pre-ICO Crowdsale has begun");
         require(ico >=  block.timestamp + 2 weeks, "ICO Crowdsale has begun");
-        require(postIco >= block.timestamp + 4 weeks), "Post-ICO has begun");
+        require(postIco >= block.timestamp + 4 weeks, "Post-ICO has begun");
         require(closingTime > openingTime, "TimedCrowdsale: opening time is not before closing time");
 
         _openingTime = openingTime;
@@ -1751,11 +1751,6 @@ contract ERC20Token is Context, IERC20, Ownable
      *
      * - `msg.sender` must be the token owner
      */
-    function mint(uint256 amount) public onlyOwner returns (bool) {
-        _mint(_msgSender(), amount);
-        return true;
-    }
-
     /**
      * @dev Moves tokens `amount` from `sender` to `recipient`.
      *
@@ -1792,13 +1787,6 @@ contract ERC20Token is Context, IERC20, Ownable
      *
      * - `to` cannot be the zero address.
      */
-    function _mint(address account, uint256 amount) internal {
-        require(account != address(0), 'ERC20: mint to the zero address');
-
-        _totalSupply = _totalSupply.add(amount);
-        _balances[account] = _balances[account].add(amount);
-        emit Transfer(address(0), account, amount);
-    }
 
     /**
      * @dev Destroys `amount` tokens from `account`, reducing the
