@@ -1293,11 +1293,20 @@ contract TimedCrowdsale is Crowdsale, StateMachine {
         return block.timestamp >= _openingTime && block.timestamp <= _closingTime;
     }
 
-    function is() public view returns (bool) {
+    function isPreIcoStage() public view returns (bool) {
         // solhint-disable-next-line not-rely-on-time
-        return block.timestamp >= _openingTime && block.timestamp <= _closingTime;
+        return block.timestamp >= _openingTime && block.timestamp <= _icoStage;
+    }
+    
+    function isIcoStage() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return block.timestamp >= _preIcoStage && block.timestamp <= _postIcoStage;
     }
 
+    function isPostIcoStage() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return block.timestamp >= _icoStage && block.timestamp <= _closingTime;
+    }
     /**
      * @dev Checks whether the period in which the crowdsale is open has already elapsed.
      * @return Whether crowdsale period has elapsed
