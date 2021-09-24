@@ -1100,14 +1100,126 @@ contract Crowdsale is Context, ReentrancyGuard {
     }
 }
 
+contract StateMachine {
+    enum Stages {
+        PreIcoStage,
+        IcoStage,
+        PostIcoStage
+    }
+    /// Function cannot be called at this time.
+    error FunctionInvalidAtThisStage;
+
+    // This is the current stage.
+    Stages public stage = Stages.PreIcoStage;
+
+    uint public creationTime = block.timestamp;
+
+    modifier atStage(Stages _stage) {
+        if (stage == _stage)
+            return FunctionValidAtThisStage();
+        _;    
+    }
+    modifier atStage(Stages _stage) {
+        if (stage != _stage)
+            revert FunctionInvalidAtThisStage;
+        _;
+    }
+
+    function nextStage() internal {
+        stage = Stages(uint(stage) + 1);
+    }
+
+    // Perform timed transitions. Be sure to mention
+    // this modifier first, otherwise the guards
+    // will not take the new stage into account.
+    modifier timedTransitions() {
+        if (stage == Stages.PreIcoStage &&
+                    block.timestamp >= creationTime)
+            nextStage();
+        if (stage == Stages.IcoStage &&
+                block.timestamp >= creationTime + 2 weeks)
+            nextStage();
+        if (stage == Stages.PostIcoStage &&
+                block.timestamp >= creationTime + 4 weeks)
+            nextStage();
+
+        // The other stages transition by transaction
+        _;
+    }
+    function setStages (uint256 PreIco, uint256 ico, uint256 PostIco) public onlyOwner {
+        if(uint256(Stages.PreIco) == _stage) {
+            stage = Stages.PreIco;
+        else if (uint256(Stages.ico)) == _stage {
+             stage = Stages.ico;
+        else if (uint256(Stages.PostIco)) == _stage {
+             stage = Stages.PostIco;
+        }     
+        
+            }
+         if (stage == Stages:preIco) {
+             rate = 100000;
+         } else if (stage == Stages.ico) {
+             rate 75000;
+         }  else if (stage == Stages.PostIco) {
+             rate = 50000;
+         } 
+        }
+
+    }
+
+  // Order of the modifiers matters here!
+    function buyTokens();()
+        public
+        payable
+        timedTransitions
+        atStage(Stages.PreIcoStage)
+    {
+        // We will not implement that here
+    }
+
+    function buyTokens()
+        public
+        payable
+        timedTransitions
+        atStage(Stages.IcoStage)
+    {
+    }
+
+    // This modifier goes to the next stage
+    // after the function is done.
+    modifier transitionNext()
+    {
+        _;
+        nextStage();
+    }
+
+    function buyTokens()
+        public
+        payable
+        timedTransitions
+        atStage(Stages.PostIcoStage)
+        transitionNext
+    {
+    }
+    function i()
+        public
+        timedTransitions
+        atStage(Stages.Finished)
+    {
+    }
+}
+
 /**
  * @title TimedCrowdsale
  * @dev Crowdsale accepting contributions only within a time frame.
  */
-contract TimedCrowdsale is Crowdsale {
+contract TimedCrowdsale is Crowdsale, StateMachine {
     using SafeMath for uint256;
 
     uint256 private _openingTime;
+    uint256 private _preIcoStage;
+    uint256 private _icoStage;
+    uint256 private _postIcoStage;
     uint256 private _closingTime;
 
     /**
@@ -1130,13 +1242,20 @@ contract TimedCrowdsale is Crowdsale {
      * @param openingTime Crowdsale opening time
      * @param closingTime Crowdsale closing time
      */
-    constructor (uint256 openingTime, uint256 closingTime) public {
+    constructor (uint256 openingTime,  uint256 PreIcoStage,  uint256 IcoStage,
+     uint256 private PreIcoStage, uint256 closingTime) public {
         // solhint-disable-next-line not-rely-on-time
         require(openingTime >= block.timestamp, "TimedCrowdsale: opening time is before current time");
+        require(preIcoStage >= block.timestamp && ), "StateMachine: Pre-Ico Stage is open");
+        require(IcoStage >= block.timestamp), "StateMachine: Ico Stage is open");
+        require(preIcoStage >= block.timestamp), "StateMachine: Post-Ico Stage is open");
         // solhint-disable-next-line max-line-length
         require(closingTime > openingTime, "TimedCrowdsale: opening time is not before closing time");
 
         _openingTime = openingTime;
+        _preIcoSatge = preIcoStage;
+        _icoStage = icoStage;
+        _postIcoStage = postIcoStage;
         _closingTime = closingTime;
     }
 
@@ -1145,6 +1264,18 @@ contract TimedCrowdsale is Crowdsale {
      */
     function openingTime() public view returns (uint256) {
         return _openingTime;
+    }
+    
+    function preIcoStage() public view returns (uint256) {
+        return _preIcoStage;
+    }
+
+    function IcoStage() public view returns (uint256) {
+        return _icoStage;
+    }
+
+    function postIcoStage() public view returns (uint256) {
+        return _postIcoStage;
     }
 
     /**
@@ -1158,6 +1289,11 @@ contract TimedCrowdsale is Crowdsale {
      * @return true if the crowdsale is open, false otherwise.
      */
     function isOpen() public view returns (bool) {
+        // solhint-disable-next-line not-rely-on-time
+        return block.timestamp >= _openingTime && block.timestamp <= _closingTime;
+    }
+
+    function is() public view returns (bool) {
         // solhint-disable-next-line not-rely-on-time
         return block.timestamp >= _openingTime && block.timestamp <= _closingTime;
     }
