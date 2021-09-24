@@ -50,9 +50,9 @@ contract StateMachine {
     function setStages (uint256 PreIco, uint256 ico, uint256 PostIco) public onlyOwner {
         if(uint256(Stages.PreIco) == _stage) {
             stage = Stages.PreIco;
-        else (uint256(Stages.ico)) == _stage {
+        else if (uint256(Stages.ico)) == _stage {
              stage = Stages.ico;
-        else (uint256(Stages.PostIco)) == _stage {
+        else if (uint256(Stages.PostIco)) == _stage {
              stage = Stages.PostIco;
         }     
         
