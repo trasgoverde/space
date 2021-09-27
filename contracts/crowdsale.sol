@@ -1121,7 +1121,7 @@ contract StateMachine {
     }
     modifier atStage(Stages _stage) {
         if (stage != _stage)
-            revert FunctionInvalidAtThisStage;
+            revert FunctionInvalidAtThisStage();
         _;
     }
 
@@ -1156,7 +1156,7 @@ contract StateMachine {
         }     
         
             }
-         if (stage == Stages:preIco) {
+         if (stage == Stages.preIco) {
              rate = 100000;
          } else if (stage == Stages.ico) {
              rate 75000;
@@ -1174,7 +1174,7 @@ contract StateMachine {
         timedTransitions
         atStage(Stages.PreIcoStage)
     {
-        // We will not implement that here
+    // We will not implement that here
     }
 
     function buyTokens()
