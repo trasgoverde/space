@@ -1,5 +1,5 @@
 {
-    "solidity.compileUsingRemoteVersion": "v0.8.0+commit.c7dfd78e",
+    "solidity.compileUsingRemoteVersion": "v0.5.5+commit.47a71e8f",
     "solidity-va.hover": false,
     "solidity-va.deco.statevars": true,
     "solidity-va.deco.arguments": true,
