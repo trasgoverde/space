@@ -959,7 +959,15 @@ contract AllowanceCrowdsale is Context, ReentrancyGuard {
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
+     constructor (uint256 rate, address payable wallet, IERC20 token)  {
+        require(rate > 0, "Crowdsale: rate is 0");
+        require(wallet != address(0), "Crowdsale: wallet is the zero address");
+        require(address(token) != address(0), "Crowdsale: token is the zero address");
 
+        _rate = rate;
+        _wallet = wallet;
+        _token = token;
+    }
 	/**
 	 * @dev fallback function ***DO NOT OVERRIDE***
 	 * Note that other contracts will transfer funds with a base gas stipend
@@ -1125,7 +1133,7 @@ contract AllowanceCrowdsale is Context, ReentrancyGuard {
  * @title TimedCrowdsale
  * @dev Crowdsale accepting contributions only within a time frame.
  */
-contract TimedCrowdsale is AllowanceCrowdsale {
+abstract contract TimedCrowdsale is AllowanceCrowdsale {
     using SafeMath for uint256;
 
     uint256 private _openingTime;
@@ -1320,7 +1328,7 @@ abstract contract FinalizableCrowdsale is TimedCrowdsale {
  * @title PausableCrowdsale
  * @dev Extension of Crowdsale contract where purchases can be paused and unpaused by the pauser role.
  */
-contract PausableCrowdsale is AllowanceCrowdsale, Pausable {
+abstract contract PausableCrowdsale is AllowanceCrowdsale, Pausable {
     /**
      * @dev Validation of an incoming purchase. Use require statements to revert state when conditions are not met.
      * Use super to concatenate validations.
@@ -1337,7 +1345,7 @@ contract PausableCrowdsale is AllowanceCrowdsale, Pausable {
  * @title WhitelistCrowdsale
  * @dev Crowdsale in which only whitelisted users can contribute.
  */
-contract WhitelistCrowdsale is WhitelistedRole, AllowanceCrowdsale {
+abstract contract WhitelistCrowdsale is WhitelistedRole, AllowanceCrowdsale {
     /**
      * @dev Extend parent behavior requiring beneficiary to be whitelisted. Note that no
      * restriction is imposed on the account sending the transaction.
@@ -1354,7 +1362,7 @@ contract WhitelistCrowdsale is WhitelistedRole, AllowanceCrowdsale {
  * @title IndividuallyCappedCrowdsale
  * @dev Crowdsale with per-beneficiary caps.
  */
-contract IndividuallyCappedCrowdsale is AllowanceCrowdsale, CapperRole {
+abstract contract IndividuallyCappedCrowdsale is AllowanceCrowdsale, CapperRole {
     using SafeMath for uint256;
 
     mapping(address => uint256) private _contributions;
@@ -1413,7 +1421,7 @@ contract IndividuallyCappedCrowdsale is AllowanceCrowdsale, CapperRole {
  * @title CappedCrowdsale
  * @dev Crowdsale with a limit for total contributions.
  */
-contract CappedCrowdsale is AllowanceCrowdsale {
+abstract contract CappedCrowdsale is AllowanceCrowdsale {
     using SafeMath for uint256;
 
     uint256 private _cap;
@@ -2019,3 +2027,4 @@ abstract contract TokenVesting is Ownable {
  *  Optionally revocable by the
  * owner.
  */
+
