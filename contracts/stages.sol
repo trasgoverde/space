@@ -22,7 +22,7 @@ contract StateMachine {
     }
     modifier atStage(Stages _stage) {
         if (stage != _stage)
-            revert FunctionInvalidAtThisStage;
+            revert FunctionInvalidAtThisStage();
         _;
     }
 
@@ -49,11 +49,11 @@ contract StateMachine {
     }
     function setStages (uint256 PreIco, uint256 ico, uint256 PostIco) public onlyOwner {
         if(uint256(Stages.PreIco) == _stage) {
-            stage = Stages.PreIco;
+            _stage = Stages.PreIco;
         else (uint256(Stages.ico)) == _stage {
-             stage = Stages.ico;
+             _stage = Stages.ico;
         else (uint256(Stages.PostIco)) == _stage {
-             stage = Stages.PostIco;
+             _stage = Stages.PostIco;
         }     
         
             }
