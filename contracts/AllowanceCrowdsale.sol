@@ -912,7 +912,7 @@ contract Pausable is Context, PauserRole {
  * the methods to add functionality. Consider using 'super' where appropriate to concatenate
  * behavior.
  */
-abstract contract AllowanceCrowdsale is Context, ReentrancyGuard {
+contract AllowanceCrowdsale is Context, ReentrancyGuard {
 	using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -1125,7 +1125,7 @@ abstract contract AllowanceCrowdsale is Context, ReentrancyGuard {
  * @title TimedCrowdsale
  * @dev Crowdsale accepting contributions only within a time frame.
  */
-abstract contract TimedCrowdsale is AllowanceCrowdsale {
+contract TimedCrowdsale is AllowanceCrowdsale {
     using SafeMath for uint256;
 
     uint256 private _openingTime;
@@ -1161,6 +1161,19 @@ abstract contract TimedCrowdsale is AllowanceCrowdsale {
         _closingTime = closingTime;
     }
 
+    /**
+     * @return the crowdsale opening time.
+     */
+    function openingTime() public view returns (uint256) {
+        return _openingTime;
+    }
+
+    /**
+     * @return the crowdsale closing time.
+     */
+    function closingTime() public view returns (uint256) {
+        return _closingTime;
+    }
 
     /**
      * @return true if the crowdsale is open, false otherwise.
@@ -1307,7 +1320,7 @@ abstract contract FinalizableCrowdsale is TimedCrowdsale {
  * @title PausableCrowdsale
  * @dev Extension of Crowdsale contract where purchases can be paused and unpaused by the pauser role.
  */
-abstract contract PausableCrowdsale is AllowanceCrowdsale, Pausable {
+contract PausableCrowdsale is AllowanceCrowdsale, Pausable {
     /**
      * @dev Validation of an incoming purchase. Use require statements to revert state when conditions are not met.
      * Use super to concatenate validations.
@@ -1324,7 +1337,7 @@ abstract contract PausableCrowdsale is AllowanceCrowdsale, Pausable {
  * @title WhitelistCrowdsale
  * @dev Crowdsale in which only whitelisted users can contribute.
  */
-abstract contract WhitelistCrowdsale is WhitelistedRole, AllowanceCrowdsale {
+contract WhitelistCrowdsale is WhitelistedRole, AllowanceCrowdsale {
     /**
      * @dev Extend parent behavior requiring beneficiary to be whitelisted. Note that no
      * restriction is imposed on the account sending the transaction.
@@ -1341,7 +1354,7 @@ abstract contract WhitelistCrowdsale is WhitelistedRole, AllowanceCrowdsale {
  * @title IndividuallyCappedCrowdsale
  * @dev Crowdsale with per-beneficiary caps.
  */
-abstract contract IndividuallyCappedCrowdsale is AllowanceCrowdsale, CapperRole {
+contract IndividuallyCappedCrowdsale is AllowanceCrowdsale, CapperRole {
     using SafeMath for uint256;
 
     mapping(address => uint256) private _contributions;
@@ -1400,7 +1413,7 @@ abstract contract IndividuallyCappedCrowdsale is AllowanceCrowdsale, CapperRole 
  * @title CappedCrowdsale
  * @dev Crowdsale with a limit for total contributions.
  */
-abstract contract CappedCrowdsale is AllowanceCrowdsale {
+contract CappedCrowdsale is AllowanceCrowdsale {
     using SafeMath for uint256;
 
     uint256 private _cap;
@@ -1449,7 +1462,7 @@ abstract contract CappedCrowdsale is AllowanceCrowdsale {
  * `onlyOwner`, which can be applied to your functions to restrict their use to
  * the owner.
  */
-abstract contract Ownable is Context {
+contract Ownable is Context {
   address private _owner;
 
   event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
@@ -1532,15 +1545,15 @@ contract ERC20Token is Context, IERC20, Ownable
      * All three of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor() {
-    _name = "SPACE";
-    _symbol = "SPACE";
-    _decimals = 18;
-    _totalSupply = 1000000000 * 10 ** uint256(_decimals);
-    _balances[msg.sender] = _totalSupply;
+  //  constructor() {
+  //   _name = "SPACE";
+  // _symbol = "SPACE";
+  //_decimals = 18;
+  //  _totalSupply = 1000000000 * 10 ** uint256(_decimals);
+  //  _balances[msg.sender] = _totalSupply;
 
-    emit Transfer(address(0), msg.sender, _totalSupply);
-  }
+    //emit Transfer(address(0), msg.sender, _totalSupply);
+  //}
 
     /**
      * @dev Returns the erc token owner.
@@ -1690,10 +1703,10 @@ contract ERC20Token is Context, IERC20, Ownable
      *
      * - `msg.sender` must be the token owner
      */
-    function mint(uint256 amount) public onlyOwner returns (bool) {
-        _mint(_msgSender(), amount);
-        return true;
-    }
+    //function mint(uint256 amount) public onlyOwner returns (bool) {
+    //    _mint(_msgSender(), amount);
+    //     return true;
+    //}
 
     /**
      * @dev Moves tokens `amount` from `sender` to `recipient`.
@@ -1731,13 +1744,13 @@ contract ERC20Token is Context, IERC20, Ownable
      *
      * - `to` cannot be the zero address.
      */
-    function _mint(address account, uint256 amount) internal {
-        require(account != address(0), 'ERC20: mint to the zero address');
+    //function _mint(address account, uint256 amount) internal {
+    //    require(account != address(0), 'ERC20: mint to the zero address');
 
-        _totalSupply = _totalSupply.add(amount);
-        _balances[account] = _balances[account].add(amount);
-        emit Transfer(address(0), account, amount);
-    }
+    //    _totalSupply = _totalSupply.add(amount);
+    //    _balances[account] = _balances[account].add(amount);
+    //    emit Transfer(address(0), account, amount);
+    //}
 
     /**
      * @dev Destroys `amount` tokens from `account`, reducing the
@@ -1750,13 +1763,13 @@ contract ERC20Token is Context, IERC20, Ownable
      * - `account` cannot be the zero address.
      * - `account` must have at least `amount` tokens.
      */
-    function _burn(address account, uint256 amount) internal {
-        require(account != address(0), 'ERC20: burn from the zero address');
+    //function _burn(address account, uint256 amount) internal {
+    //    require(account != address(0), 'ERC20: burn from the zero address');
 
-        _balances[account] = _balances[account].sub(amount, 'ERC20: burn amount exceeds balance');
-        _totalSupply = _totalSupply.sub(amount);
-        emit Transfer(account, address(0), amount);
-    }
+    //    _balances[account] = _balances[account].sub(amount, 'ERC20: burn amount exceeds balance');
+    //    _totalSupply = _totalSupply.sub(amount);
+    //    emit Transfer(account, address(0), amount);
+    // }
 
     /**
      * @dev Sets `amount` as the allowance of `spender` over the `owner`s tokens.
@@ -1789,12 +1802,220 @@ contract ERC20Token is Context, IERC20, Ownable
      *
      * See {_burn} and {_approve}.
      */
-    function _burnFrom(address account, uint256 amount) internal {
-        _burn(account, amount);
-        _approve(
-            account,
-            _msgSender(),
-            _allowances[account][_msgSender()].sub(amount, 'ERC20: burn amount exceeds allowance')
-        );
+   //  function _burnFrom(address account, uint256 amount) internal {
+    //    _burn(account, amount);
+    //    _approve(
+     //       account,
+     //       _msgSender(),
+      //      _allowances[account][_msgSender()].sub(amount, 'ERC20: burn amount exceeds allowance')
+      //  );
+   // }
+}
+
+/**
+ * @title TokenVesting
+ * @dev A token holder contract that can release its token balance gradually like a
+ * typical vesting scheme, with a cliff and vesting period. Optionally revocable by the
+ * owner.
+ */
+abstract contract TokenVesting is Ownable {
+    // The vesting schedule is time-based (i.e. using block timestamps as opposed to e.g. block numbers), and is
+    // therefore sensitive to timestamp manipulation (which is something miners can do, to a certain degree). Therefore,
+    // it is recommended to avoid using short time durations (less than a minute). Typical vesting schemes, with a
+    // cliff period of a year and a duration of four years, are safe to use.
+    // solhint-disable not-rely-on-time
+
+    using SafeMath for uint256;
+    using SafeERC20 for IERC20;
+
+    event TokensReleased(address token, uint256 amount);
+    event TokenVestingRevoked(address token);
+
+    // beneficiary of tokens after they are released
+    address private _beneficiary;
+
+    // Durations and timestamps are expressed in UNIX time, the same units as block.timestamp.
+    uint256 private _cliff;
+    uint256 private _start;
+    uint256 private _duration;
+    
+    bool private _revocable;
+
+    mapping (address => uint256) private _released;
+    mapping (address => bool) private _revoked;
+
+    /**
+     * @dev Creates a vesting contract that vests its balance of any ERC20 token to the
+     * beneficiary, gradually in a linear fashion until start + duration. By then all
+     * of the balance will have vested.
+     * @param beneficiary address of the beneficiary to whom vested tokens are transferred
+     * @param cliffDuration duration in seconds of the cliff in which tokens will begin to vest
+     * @param start the time (as Unix time) at which point vesting starts
+     * @param duration duration in seconds of the period in which the tokens will vest
+     * @param revocable whether the vesting is revocable or not
+     */
+    constructor (address beneficiary, uint256 start, uint256 cliffDuration, uint256 duration, bool revocable) {
+        require(beneficiary != address(0), "TokenVesting: beneficiary is the zero address");
+        // solhint-disable-next-line max-line-length
+        require(cliffDuration <= duration, "TokenVesting: cliff is longer than duration");
+        require(duration > 0, "TokenVesting: duration is 0");
+        // solhint-disable-next-line max-line-length
+        require(start.add(duration) > block.timestamp, "TokenVesting: final time is before current time");
+
+        _beneficiary = beneficiary;
+        _revocable = revocable;
+        _duration = duration;
+        _cliff = start.add(cliffDuration);
+        _start = start;
+    }
+    
+    /**
+     * @return the beneficiary of the tokens.
+     */
+    function beneficiary() public view returns (address) {
+        return _beneficiary;
+    }
+
+    /**
+     * @return the cliff time of the token vesting.
+     */
+    function cliff() public view returns (uint256) {
+        return _cliff;
+    }
+
+    /**
+     * @return the start time of the token vesting.
+     */
+    function start() public view returns (uint256) {
+        return _start;
+    }
+
+    /**
+     * @return the duration of the token vesting.
+     */
+    function duration() public view returns (uint256) {
+        return _duration;
+    }
+
+    /**
+     * @return true if the vesting is revocable.
+     */
+    function revocable() public view returns (bool) {
+        return _revocable;
+    }
+
+    /**
+     * @return the amount of the token released.
+     */
+    function released(address token) public view returns (uint256) {
+        return _released[token];
+    }
+
+    /**
+     * @return true if the token is revoked.
+     */
+    function revoked(address token) public view returns (bool) {
+        return _revoked[token];
+    }
+
+    /**
+     * @notice Transfers vested tokens to beneficiary.
+     * @param token ERC20 token which is being vested
+     */
+    function release(IERC20 token) public {
+        uint256 unreleased = _releasableAmount(token);
+        require(unreleased > 0, "TokenVesting: no tokens are due");
+
+        _released[address(token)] = _released[address(token)].add(unreleased);
+
+        token.safeTransfer(_beneficiary, unreleased);
+
+        emit TokensReleased(address(token), unreleased);
+    }
+
+    /**
+     * @notice Allows the owner to revoke the vesting. Tokens already vested
+     * remain in the contract, the rest are returned to the owner.
+     * @param token ERC20 token which is being vested
+     */
+    function revoke(IERC20 token) public onlyOwner {
+        require(_revocable, "TokenVesting: cannot revoke");
+        require(!_revoked[address(token)], "TokenVesting: token already revoked");
+
+        uint256 balance = token.balanceOf(address(this));
+
+        uint256 unreleased = _releasableAmount(token);
+        uint256 refund = balance.sub(unreleased);
+
+        _revoked[address(token)] = true;
+
+        token.safeTransfer(owner(), refund);
+
+        emit TokenVestingRevoked(address(token));
+    }
+    
+    /**
+     * @notice Allows the owner to adjust the vesting duration. 
+     * @param newEndTime how long for the vesting period to last
+     */
+    function extendVestDuration(uint256 newEndTime) public onlyOwner {
+        require(newEndTime > 0, "TokenVesting: duration is 0");
+        require(_start.add(newEndTime) > block.timestamp, "TokenVesting: final time is before current time");
+        _duration = newEndTime;
+    }
+    
+    /**
+     * @notice Allows the owner to adjust the cliff duration. 
+     * @param newStartTime how long for the cliff period to last
+     */
+    function extendCliffDuration(uint256 newStartTime) public onlyOwner {
+        uint256 cliffDuration = _cliff - _start;
+        _cliff = newStartTime.add(cliffDuration);
+        _start = newStartTime;
+    }
+    
+    /**
+     * @dev Calculates the amount that has already vested but hasn't been released yet.
+     * @param token ERC20 token which is being vested
+     */
+    function _releasableAmount(IERC20 token) public view returns (uint256) {
+        return _vestedAmount(token).sub(_released[address(token)]);
+    }
+
+    /**
+     * @dev Calculates the amount that has already vested.
+     * @param token ERC20 token which is being vested
+     */
+    function _vestedAmount(IERC20 token) private view returns (uint256) {
+        uint256 currentBalance = token.balanceOf(address(this));
+        uint256 totalBalance = currentBalance.add(_released[address(token)]);
+
+            if (block.timestamp < _cliff) {
+                return 0;
+            } else if (block.timestamp >= _start.add(_duration) || _revoked[address(token)]) {
+                return totalBalance;
+            } 
+            else 
+            {
+                return totalBalance.mul(block.timestamp.sub(_start)).div(_duration);
+            }
+    }
+    
+    function getTotalAmount(IERC20 token) public view returns (uint256) {
+        uint256 currentBalance = token.balanceOf(address(this));
+        uint256 totalBalance = currentBalance.add(_released[address(token)]);
+        return totalBalance;
+    }
+    
+    function getLeftoverAmount(IERC20 token) public view returns (uint256) {
+        
+        return  token.balanceOf(address(this));
     }
 }
+
+/**
+ * @title SpaceTokenPrivateSale
+ * @dev A token sale contract for Spaces
+ *  Optionally revocable by the
+ * owner.
+ */
